@@ -1,0 +1,14 @@
+/* KoreaMap.css */
+path {
+    fill: #ccc; /* 기본 배경색을 흰색으로 지정 */
+}
+
+/* 마우스 오버 시 해당지역의 영역을 다크시안으로 변경 */
+path:hover {
+    fill: darkcyan;
+}
+
+/*로케이션 선택시 해당지역의 영역을 딥그린으로 변경*/
+path:active{
+    fill: #fff;
+}
