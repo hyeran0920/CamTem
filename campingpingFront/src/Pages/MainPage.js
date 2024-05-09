@@ -1,5 +1,5 @@
 import bgImage from "../images/mainimage1.jpg";
-import { Container, Card, Button, Carousel } from "react-bootstrap";
+import { Container, Card, Button } from "react-bootstrap";
 import TopNav from "../Components/TopNav";
 import CenterContent from "../Components/CenterContent";
 import CircleButton from "../Components/CircleButton";
@@ -11,6 +11,11 @@ import axios from "axios";
 import defaultImage from '../images/image44.png';
 import WeatherComponent from "../Components/WeatherComponent";
 import "../Components/KoreaMap.css";
+import Slider from "react-slick";
+import styled from 'styled-components';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 
 function MainPage() {
   const [location, setLocation] = useState("");
@@ -80,20 +85,20 @@ function MainPage() {
         </Container>
 
         {/* 3번째 컨테이너 */}
-        <Container fluid style={{ width: "100%" }}>
+        <Container fluid style={{ width: "80%" }}>
           <h1>{location} 추천 캠핑장</h1>
           <br />
           <br />
           <br />
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", justifyContent: "center", alignItems:'center'}}>
               {/* 왼쪽 세션 */}
-              <div style={{ flex: 1.5, paddingRight: "10px" }}>
+              <div style={{ width:'60%', paddingRight: "10px" }}>
                   <CampingArea location={location} handleLocationChange={handleLocationChange} />
               </div>
 
               {/* 오른쪽 세션 */}
-              <div style={{ flex: 1, paddingLeft: "10px" }}>
-              <Koreamap location={location} handleLocationChange={handleLocationChange} />
+              <div style={{ width:'40%', paddingLeft: "10px" }}>
+                <Koreamap location={location} handleLocationChange={handleLocationChange} />
               </div>
           </div> 
         </Container>
@@ -105,15 +110,26 @@ function MainPage() {
 function CampingArea({ location }) {
   const [kk, setKk] = useState(null);
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 2,
+    nextArrow: <BsArrowRightCircleFill/>,
+    prevArrow: <BsArrowLeftCircleFill />,
+    autoplay: true,
+    autoplaySpeed: 4000,
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "http://apis.data.go.kr/B551011/GoCamping/locationBasedList?serviceKey=hbDw%2FtMHLuDxj0DparGpJaydrLr0Qx%2FKrwNhE0wlidNKKDLX0y8Tg%2BsyTPyrhvrRZXCGhyWuLQpneGP%2B5ko%2BBw%3D%3D&MobileOS=ETC&MobileApp=AppTest&mapX=127.3845475&mapY=36.3504119&radius=500000&numOfRows=500&_type=json"
         );
-        console.log("Received data:", response.data);
-
-        setKk(response.data);
+        console.log("Received data:",response.data.response.body.items.item );
+        setKk(response.data.response.body.items.item);
       } catch (error) {
         console.error(error);
       }
@@ -123,45 +139,52 @@ function CampingArea({ location }) {
   }, [location]);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <Carousel>
-        {kk && kk.response.body.items.item
-          ? Object.values(kk.response.body.items.item)
-              .filter(
-                (item) =>
-                  item.addr1 &&
-                  item.addr1.includes(location) &&
-                  item.firstImageUrl !== null
-              )
-              .map((item, index) => (
-                <Carousel.Item key={index}>
-                  <Card style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                    <Card.Img 
-                        variant="top" 
-                        src={item.firstImageUrl ? item.firstImageUrl : defaultImage }
-                    />
-                    {/* <Card.Img 
-                        variant="top" 
-                        src={item.firstImageUrl ? item.firstImageUrl : defaultImage } 
-                        style={{ height: '200px', objectFit: 'cover' }} 
-                    /> */}
-                    <Card.Body style={{ flex: "1 0 auto", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                        <div>
-                            <Card.Title>{item.facltNm}</Card.Title>
-                            <Card.Text style={{ fontSize: "13px" }}>
-                                {item.addr1}
-                            </Card.Text>
-                        </div>
-                        {/*<Button href="#">보러가기</Button>*/}
-                    </Card.Body>
-                  </Card>
-                </Carousel.Item>
-              ))
-          : null}
-      </Carousel>
-    </div>
+    <section className="carouselContainer" style={{ display: "flex", justifyContent: "center" }}>
+      <Container className="carousel">
+      <StyledSlider {...settings}>
+        {kk && kk.map((item, idx)=>(
+          <div className="carouselItem" key={idx}>
+            <div className="carouselImg">
+              <img src={item.firstImageUrl ? item.firstImageUrl : defaultImage } style={{ height:'300px', width: '100%', objectFit: 'cover' }}/>
+            </div>
+            <div className="cardText" style={{ padding: "10px" }}>
+              <p className="facltName" style={{ fontSize: "20px", fontWeight: "bold" }}>{item.facltNm}</p>
+              <p className="address" style={{ fontSize: "13px" }}>{item.addr1}</p>
+              <Button href="#" style={{float:'right', marginBottom:'10px'}}>보러가기</Button>
+            </div>
+            </div>
+        ))}
+        </StyledSlider>
+      </Container>
+    </section>
   );
 }
+
+const StyledSlider = styled(Slider)`
+
+  .carouselItem {
+    // border-radius:0.75rem;
+    overflow:hidden;
+    // box-shadow: 5px 5px 5px lightGray;
+    border:none;
+    width: 90%;
+  }
+
+  .carouselImg{
+    border-radius: 0.75rem 0.75rem 0 0;
+  }
+
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 0;
+    display: none;
+  }
+
+  .slick-slide {
+  padding: 0 30px;
+}
+
+`
 
 // function CampingArea({ location }) {
 //   const [kk, setKk] = useState(null);

@@ -122,19 +122,6 @@ function SearchBar() {
       console.log(requestData);
       console.log(selectedCityInfo);
 
-      // const weatherResponse = await axios.post("/api/recommend-campsite", JSON.stringify(requestData), {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-
-      // console.log(weatherResponse);
-
-      // const campResponse = await axios.post("/api/productlist", JSON.stringify(selectedCityInfo), {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
       const [weatherResponse, campResponse] = await Promise.all([
         axios.post("/api/recommend-campsite", requestData),
         axios.post("/api/productlist", selectedCityInfo),
