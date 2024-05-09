@@ -1,0 +1,16 @@
+2024-05-07T00:11:59.727+09:00  INFO 31796 --- [myapp] [restartedMain] c.c.camtemback.CamtemBackApplication     : Starting CamtemBackApplication using Java 17.0.9 with PID 31796 (C:\folder\campingback\build\classes\java\main started by treas in C:\folder\campingback)
+2024-05-07T00:11:59.729+09:00  INFO 31796 --- [myapp] [restartedMain] c.c.camtemback.CamtemBackApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-05-07T00:11:59.762+09:00  INFO 31796 --- [myapp] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-05-07T00:11:59.762+09:00  INFO 31796 --- [myapp] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-05-07T00:12:00.437+09:00  INFO 31796 --- [myapp] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-05-07T00:12:00.447+09:00  INFO 31796 --- [myapp] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-07T00:12:00.448+09:00  INFO 31796 --- [myapp] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.20]
+2024-05-07T00:12:00.482+09:00  INFO 31796 --- [myapp] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-05-07T00:12:00.482+09:00  INFO 31796 --- [myapp] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 701 ms
+2024-05-07T00:12:00.757+09:00  INFO 31796 --- [myapp] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-05-07T00:12:00.786+09:00  INFO 31796 --- [myapp] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-05-07T00:12:00.793+09:00  INFO 31796 --- [myapp] [restartedMain] c.c.camtemback.CamtemBackApplication     : Started CamtemBackApplication in 1.346 seconds (process running for 1.815)
+2024-05-07T00:12:11.024+09:00  INFO 31796 --- [myapp] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-05-07T00:12:11.024+09:00  INFO 31796 --- [myapp] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-05-07T00:12:11.024+09:00  INFO 31796 --- [myapp] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-05-07T00:13:56.244+09:00  WARN 31796 --- [myapp] [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public org.springframework.http.ResponseEntity<?> com.camtem.camtemback.controller.HiController.campreco(com.camtem.camtemback.dto.CampingDto)]
