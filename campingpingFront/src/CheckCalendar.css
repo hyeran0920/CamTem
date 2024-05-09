@@ -1,0 +1,24 @@
+.CheckCalendar {
+    margin-left: 50px;
+    background-color: white;
+    border: none;
+}
+
+.CheckCalendar__header {
+    background-color: #ffffff;
+}
+
+.CheckCalendar-popper {
+    background-color: #ffffff;
+}
+
+.CheckCalendar__year-dropdown,
+.CheckCalendar__month-dropdown,
+.CheckCalendar__month-year-dropdown {
+    background-color: #ffffff;
+}
+
+/* 아니 이거 달력 전체적인 부분을 어떻게든 키워서 드리고 싶었는데 해결을 못했음요...ㅜㅜ */
+/* .react-datepicker__month-container {
+    padding: 12px 32px;
+} */
