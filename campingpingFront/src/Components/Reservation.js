@@ -104,10 +104,16 @@ function SearchBar() {
 
       // 서울을 선택했을 때 mapX, mapY, radius 값을 설정합니다.
       const mapCoordinates = {
-        서울: { mapX: 126.9783882, mapY: 37.5666103, radius: 15000 },
-        부산: { mapX: 129.0756416, mapY: 35.1795543, radius: 10000 },
-        인천: { mapX: 126.7052062, mapY: 37.4562557, radius: 12000 }, // 예시 좌표 및 반경
-        // 다른 도시들에 대한 좌표도 이와 같이 추가할 수 있습니다.
+        서울: { mapX: 126.97806, mapY: 37.56667, radius: 15000 },
+        부산: { mapX: 129.07556, mapY: 35.17944, radius: 10000 },
+        인천: { mapX: 126.70528, mapY: 37.45639, radius: 12000 },
+        대구: { mapX: 128.60250, mapY: 35.87222, radius: 15000 },
+        광주: { mapX: 126.85306, mapY: 35.15972, radius: 18000 },
+        대전: { mapX: 127.38500, mapY: 36.35111, radius: 20000 },
+        울산: { mapX: 129.31667, mapY: 35.53889, radius: 19000 },
+        세종: { mapX: 127.28167, mapY: 36.48750, radius: 17000 },
+        경기: { mapX: 126.262021, mapY: 38.300603, radius: 19000 },
+        강원: { mapX: 127.080231, mapY: 38.642618, radius: 25000 }
       };
 
       // 사용자가 선택한 도시에 따라 mapX, mapY, radius 정보를 포함합니다.
