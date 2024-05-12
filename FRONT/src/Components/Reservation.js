@@ -135,6 +135,7 @@ function SearchBar() {
       //     "Content-Type": "application/json",
       //   },
       // });
+      // 백엔드 
       const [weatherResponse, campResponse] = await Promise.all([
         axios.post("/api/recommend-campsite", requestData),
         axios.post("/api/productlist", selectedCityInfo),

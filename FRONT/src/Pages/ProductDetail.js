@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import TopNav from "../Components/TopNav";
 import Footer from "../Components/Footer";
 import { Accordion, Carousel, Container, Image, Nav } from "react-bootstrap";
@@ -8,9 +9,37 @@ import item3 from "../images/image44.png";
 import KakaoMap from "../Components/KakaoMap";
 import { FaBullhorn, FaCrosshairs, FaQuestion } from "react-icons/fa";
 import axios from "axios";
+import defaultImage from '../images/image44.png';
 import { useDispatch, useSelector } from "react-redux";
 
 function ProductDetail() {
+
+    // useParams : api에 요청한 url에 접근해서 100109 id를 가져올 수 있다.
+    const {contentId} = useParams();
+    const [content, setContent] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                //contentId 있으면 캠핑장 전부 다 띄우기
+              if (contentId) {
+                const response = await axios.get(
+                  "http://apis.data.go.kr/B551011/GoCamping/locationBasedList?serviceKey=hbDw%2FtMHLuDxj0DparGpJaydrLr0Qx%2FKrwNhE0wlidNKKDLX0y8Tg%2BsyTPyrhvrRZXCGhyWuLQpneGP%2B5ko%2BBw%3D%3D&MobileOS=ETC&MobileApp=AppTest&mapX=127.3845475&mapY=36.3504119&radius=500000&numOfRows=500&_type=json"
+                );
+                // 얘는 새고해도 안없어짐
+                // response.data.response.body.items.item 캠핑장 리스트에서 itme을 찾음. => 캠핑장 리스트 중 고유한 contentId랑 useParameter로 넘어온 contentid랑 같은거 찾기
+                const data = response.data.response.body.items.item.find((item) => item.contentId === contentId);
+                setContent(data);
+                console.log(data);
+              }
+            } catch (error) {
+              console.error(error);
+            }
+          };
+      
+          fetchData();
+
+      }, []);
 
     //NavTab에 클릭하면 그 페이지로 넘어가게 함.
     const clickCampingIntro = () => {
@@ -50,7 +79,6 @@ function ProductDetail() {
     };
 
     return (
-
         <Container fluid style={{ margin: 0, padding: 0 }}>
             {/* TopNav */}
             <TopNav bg="dark" theme="dark" />
@@ -58,20 +86,22 @@ function ProductDetail() {
             <div className="firstContainer" style={{ display: "flex", alignItems: "center" }}>
                 <div className="ThumbNail">
                     {/* 사진 : 왼쪽 + margin px로 할 지, %로 할 지... */}
-                    <Image src={item1} alt="캠핑장 사진입니다." style={{ width: "600px", margin: "8%" }} />
+                    {/* 높낮이도 정해야 함 */}
+                    {/* content firstImageUrl의 값이 있는지 확인 */}
+                    <Image src={content?.firstImageUrl} alt="캠핑장 사진입니다." style={{ width: "600px", margin: "8%" }} />
                 </div>
                 {/* 캠핑장 이름 + 수평선 + addr1, tel, 시설, 기간, 예약하기, 찜하기 : 오른쪽 */}
                 <div className="CampIntro" style={{ marginLeft: "90px" }}>
                     <div>
-                        <h2>Camping Name</h2>
+                        <h2>{content?.facltNm}</h2>
                     </div>
                     <hr />
-                    <h5 style={{ marginTop: "30px" }}>주소</h5>
-                    <h5>전화번호</h5>
-                    <h5>운영 날짜</h5>
-                    <h5>운영 날짜</h5>
+                    <h5 style={{ marginTop: "30px" }}>{content?.addr1}</h5>
+                    <h5>전화번호 : {content?.tel}</h5>
+                    <h5>운영기간 : {content?.operPdCl}</h5>
+                    <h5>운영일 : {content?.operDeCl}</h5>
                     {/* button css 변경 */}
-                    <button style={{ marginRight: "10px" }}>예약하기</button>
+                    <button style={{ marginRight: "10px" }}>{content?.resveUrl}</button>
                     <button>찜하기</button>
                 </div>
             </div>
@@ -116,32 +146,38 @@ function ProductDetail() {
                 </div>
                 {/* 캠핑장 관련 짧은 소개글 + 요금 안내 */}
                 <div className="shortInfo-payment" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <h3 className="campingShortInfo">캠핑장 관련 짧은 소개글 위치입니다.</h3>
+                    {/* 캠핑장 짧은 */}
+                    <h3 className="campingShortInfo">{content?.intro}</h3>
                     <div className="payment" style={{ display: "inline", marginRight: "20px" }}>
                         {/* 테이블로 요금 안내 */}
+                        {/* 이 부분은 db 보고 정해야 할 것 같아요 */}
                         {/* css 변경하기 + 고캠핑 doc에 가격 관련 안내 있으면 넣어주기 */}
                         <table className="table" style={{ width: "150%", textAlign: "center" }}>
                             <thead>
                                 <tr>
                                     <th>기간</th>
                                     <th>주중</th>
+                                    <th>기간</th>
                                     <th>주말</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>비수기</td>
-                                    <td>가격1</td>
+                                    <td>전체면적</td>
+                                    <td>{content?.allar}</td>
+                                    <td>가격2</td>
                                     <td>가격2</td>
                                 </tr>
                                 <tr>
-                                    <td>성수기</td>
-                                    <td>가격1</td>
+                                    <td>입지구분</td>
+                                    <td>{content?.lctCl}</td>
+                                    <td>가격2</td>
                                     <td>가격2</td>
                                 </tr>
                                 <tr>
-                                    <td>준성수기</td>
-                                    <td>가격1</td>
+                                    <td>사이트간거리</td>
+                                    <td>{content?.sitedStnc}</td>
+                                    <td>가격2</td>
                                     <td>가격2</td>
                                 </tr>
                             </tbody>
@@ -157,7 +193,7 @@ function ProductDetail() {
             <FaBullhorn /><p>캠핑장 주요시설</p>
             <div id="clickUseInfo" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div style={{ backgroundColor: "#f2f2f2", width: "90%", height: "20vh" }}>
-                    하이 여기다가 캠핑장 주요 시설 받아오기
+                    {content?.sbrsCl}
                 </div>
             </div>
             <div className="hr" style={{ width: '90%', margin: '0 auto' }}>
@@ -166,6 +202,8 @@ function ProductDetail() {
             {/* table css도 변경하기 */}
             <div className="tableEtc">
                 {/* 캠핑장 기타 시설 : 고캠핑 doc 보고 정하기 */}
+
+                {/* 이 부분은 db 보고 정해야 할 것 같아요 */}
                 <FaBullhorn /><p>캠핑장 기타시설</p>
                 <table className="table">
                     <tr>

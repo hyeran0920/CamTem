@@ -3,6 +3,7 @@ import defaultImage from '../images/image44.png';
 
 function Camping({ camping }) {
 
+  //const로 나중에 변경...
   let navigate = useNavigate();
   
   return (
@@ -21,7 +22,7 @@ function Camping({ camping }) {
               <i className="bi bi-ev-station"></i>
               <i className="bi bi-p-circle"></i>
             </div>
-            <button onClick={() => navigate("/ProductDetail")} >자세히 보기</button>
+            <button onClick={() => navigate(`/ProductDetail/${camping.contentId}`)} >자세히 보기</button>
           </div>
         </div>
       </div>

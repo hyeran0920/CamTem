@@ -22,11 +22,12 @@ function ProductList() {
           {weatherData.map((weather, index) => (
             //각 날씨 데이터에 대해 weatherCard렌더링
             <WeatherCard key={index} weather={weather} />
-          ))}
+            ))}
         </Row>
+        {console.log("캠핑데이터" +campingData)}
         <div
           className="scrollmenu"
-        >
+          >
           <a href="#All">
             <i className="fa-solid fa-tents"></i>
             <br />
