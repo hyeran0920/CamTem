@@ -71,9 +71,9 @@ function Weather(props) {
 
     // 날씨 조건에 따른 아이콘
     const weatherIcons = {
-        Rain: <TiWeatherDownpour size="100" />,
-        Clear: <TiWeatherSunny size="100" />,
-        Clouds: <TiWeatherCloudy size="100" />,
+        Rain: <TiWeatherDownpour size="80" />,
+        Clear: <TiWeatherSunny size="80" />,
+        Clouds: <TiWeatherCloudy size="80" />,
         // 추가적인 조건을 정의할 수 있습니다.
     };
 
@@ -101,16 +101,17 @@ function Weather(props) {
                 const weatherIcon = weatherIcons[data.weather[0].main];
                 
                 return (
-                    <Card border="secondary" className="mb-2" bg="info" text="white" style={{ width: "25%", margin: "0 8px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }} key={data.dt}>
+                    <Card className="mb-2 shadow-sm" bg="info" text="white" style={{ width: "20%", margin: "10px 10px", border:"none"}}>
                         <Card.Body style={{ textAlign: "center" }}>
                                 <span>{formatDate(data.dt)}</span>
                                 
                             <div style={{ display: "flex", justifyContent: "center"}}>{weatherIcon}</div>
+                            <br />  
                             <Card.Text style={{ display: "flex", justifyContent: "space-between" }}>
-                            <span>
+                            <span style={{fontSize:"10px"}}>
                                 강수확률: {data.pop * 100}%
                                 {data.rain && data.rain["3h"] !== undefined && (
-                                    <span> 강수량: {data.rain["3h"]} mm</span>
+                                    <span><br /> 강수량: {data.rain["3h"]} mm</span>
                                 )}
                             </span>
                             <span>

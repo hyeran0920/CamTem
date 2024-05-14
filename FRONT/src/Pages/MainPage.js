@@ -17,7 +17,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function MainPage() {
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState("서울");
   const today = new Date();
   const todayDateString = today.toLocaleDateString("ko-KR");
   
@@ -38,7 +38,7 @@ function MainPage() {
     <div className="App">
       <Container
         fluid
-        style={{ backgroundImage: "url(" + bgImage + ")", backgroundSize: "cover", width: "100%", height: "900px" }}
+        style={{ backgroundImage: "url(" + bgImage + ")", backgroundSize: "cover", width: "100%", height: "100vh" }}
       >
         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
           <TopNav bg="transparent" theme="dark" />
@@ -62,35 +62,47 @@ function MainPage() {
         <CircleButton location={location} handleLocationChange={handleLocationChange} />
       </Container>
 
+      <Container id="date-section" fluid style={{ width: "100%" }}>
+  <h1 style={{ display: "inline-block", marginTop: "50px", fontWeight: "bold" }}>언제 떠날까요?</h1>
+  <div style={{ display: "flex", marginBottom: "100px", position: "relative" }}>
 
-      <Container id="date-section" fluid style={{ width: "100%", display: "flex", marginBottom: "70px" }}>
-        {/* 왼쪽 섹션 */}
-
-        <div style={{ flex: 1, marginLeft: "20px", textAlign: "center",marginTop:"50px" }}>
-          <h3 style={{ color: "#333", fontWeight: "bold", marginBottom: "20px" }}>
-            언제 떠날까요?
-          </h3>
-          <div style={{ marginTop: "85px", marginBottom: "75px" }}>
-            <Calendar2 />
-          </div>
+    {/* 왼쪽 섹션 */}
+    <div style={{ flex: 1, marginLeft: "20px", textAlign: "center" }}>
+      <div style={{ marginTop: "30px", marginBottom: "75px" }}>
+        <h2 style={{ color: "#333", marginBottom: "20px" }}>
+          여행일의 날씨를 확인해보세요!
+        </h2>
+        <br />
+        <div style={{ marginLeft: "100px" }}>
+          <Calendar2 todayDateString={todayDateString} />
         </div>
+        <br />
+        <br />
+        <h2>선택한 날짜: {todayDateString}</h2>
+      </div>
+    </div>
 
-        {/* 오른쪽 섹션 */}
-        <div style={{ flex: 1.5, textAlign: "center", marginBottom: "0",marginTop:"50px" }}>
-          <h1 style={{ color: "#333", fontSize: "2rem", fontWeight: "bold", marginBottom: "20px" }}>
-            {location} #예상날씨
-          </h1>
-          <div className="weather-card" style={{ padding: "20px", borderRadius: "10px", marginBottom: "20px" }}>
-          <Weather key={todayDateString} location={location} />          </div>
-          <div className="activity-section" style={{ padding: "10px", borderRadius: "10px" }}>
-          <CampCards location={location} handleLocationChange={handleLocationChange} />          </div>
-        </div>
-      </Container>
+    {/* 오른쪽 섹션 */}
+    <div style={{ flex: 1, marginRight: "20px", textAlign: "center" }}>
+      <h2 style={{ color: "#333", marginBottom: "20px", marginTop: "30px" }}>
+        {todayDateString} {location} 예상날씨
+      </h2>
+      <div className="weather-card" style={{ padding: "20px", borderRadius: "10px", marginBottom: "20px" }}>
+        <Weather key={todayDateString} location={location} />
+      </div>
+      <div className="activity-section" style={{ padding: "10px", borderRadius: "10px" }}>
+        <CampCards location={location} handleLocationChange={handleLocationChange} />
+      </div>
+    </div>
+  </div>
+</Container>
+
+
 
 
 
       <Container fluid style={{ width: "100%" }}>
-        <h1>{location} 추천 캠핑장</h1>
+        <h1 style={{fontWeight: "bold"}}>{location} 추천 캠핑장</h1>
         <br />
         <br />
         <br />

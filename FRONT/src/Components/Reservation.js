@@ -48,8 +48,18 @@ function SearchBar() {
     서울: "Seoul",
     부산: "Busan",
     인천: "Incheon",
-    // 나머지 도시들도 이와 같이 매핑
+    대구: "Daegu",
+    광주: "Gwangju",
+    대전: "Daejeon",
+    울산: "Ulsan",
+    세종: "Sejong",
+    경기: "Gyeonggi",
+    강원: "Gangwon",
+    충청북도: "Chungcheongbuk-do",
+    충청남도: "Chungcheongnam-do",
+    전북: "Jeollabuk-do",
   };
+  
 
   // 날짜 선택 기능
   const [dateRange, setDateRange] = useState({
@@ -85,9 +95,10 @@ function SearchBar() {
       const endDate = dateRange.endDate;
 
       if (!startDate || !endDate) {
-        console.log("시작일과 종료일을 선택하세요.");
+        window.alert("시작일과 종료일을 선택하세요.");
         return;
       }
+      
 
       // 날짜 범위에서 각 날짜를 배열에 추가
       const dates = [];
@@ -122,19 +133,6 @@ function SearchBar() {
       console.log(requestData);
       console.log(selectedCityInfo);
 
-      // const weatherResponse = await axios.post("/api/recommend-campsite", JSON.stringify(requestData), {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-
-      // console.log(weatherResponse);
-
-      // const campResponse = await axios.post("/api/productlist", JSON.stringify(selectedCityInfo), {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
       const [weatherResponse, campResponse] = await Promise.all([
         axios.post("/api/recommend-campsite", requestData),
         axios.post("/api/productlist", selectedCityInfo),
@@ -172,6 +170,11 @@ function SearchBar() {
       //이렇게 하면 해당 데이터의 dt를 날짜로 변경가능
     }
   }, [searchTerm, dateRange, numPeople, weatherData]);
+
+
+
+  
+
 
   return (
     <Container>

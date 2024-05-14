@@ -3,6 +3,7 @@ import TopNav from "../Components/TopNav";
 import WeatherCard from "../Components/WeatherCard";
 import SearchBar from "../Components/Reservation";
 import CenterContent from "../Components/CenterContent";
+import Reservation from "../Components/Reservation"
 import Footer from "../Components/Footer";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -16,66 +17,19 @@ function ProductList() {
     <div className="productList">
       <Container fluid style={{ margin: 0, padding: 0 }}>
         <TopNav bg="dark" theme="dark" />
-        <CenterContent />
-        <Row>
-          {weatherData.map((weather, index) => (
-            //각 날씨 데이터에 대해 weatherCard렌더링
-            <WeatherCard key={index} weather={weather} />
-          ))}
-        </Row>
-        <div
-          className="scrollmenu"
-          // style={{
-          //   backgroundColor: "#333",
-          //   overflow: "auto",
-          //   whiteSpace: "nowrap",
-          //   textAlign: "center",
-          //   marginBottom: "20px",
-          //   //나머지 밑의 스타일들은 index.css에있음
-          // }}
-        >
-          <a href="#All">
-            <i className="fa-solid fa-tents"></i>
-            <br />
-            전체
-          </a>
-          <a href="#promotion">
-            <i className="fa-solid fa-rectangle-ad"></i>
-            <br />
-            프로모션
-          </a>
-          <a href="#family">
-            <i className="fa-solid fa-people-group"></i>
-            <br />
-            가족여행
-          </a>
-          <a href="#sale">
-            <i className="fa-solid fa-percent"></i>
-            <br />
-            할인
-          </a>
-          <a href="#newOpen">
-            <i className="fa-solid fa-award"></i>
-            <br />
-            신규오픈
-          </a>
-          <a href="#onlyHere">
-            <i className="fa-solid fa-user-secret"></i>
-            <br />
-            단독소개
-          </a>
-          <a href="#populerSpot">
-            <i className="fa-solid fa-crown"></i>
-            <br />
-            인기장소
-          </a>
-          <a href="#pat">
-            <i className="fa-solid fa-paw"></i>
-            <br />
-            반려동물
-          </a>
+        <div style={{backgroundColor:"#f5f5f5"}}>
+        <br />
+        <div style={{ width: "70%", margin: "10px auto" }}>
+        <Reservation />
         </div>
-        <hr />
+        <Row className="justify-content-center">
+  {weatherData.map((weather, index) => (
+    // 각 날씨 데이터에 대해 WeatherCard 렌더링
+    <WeatherCard key={index} weather={weather} />
+  ))}
+</Row>
+<br />
+</div>
         {campingData.map((camping, index) => (
           <Camping key={index} camping={camping} />
         ))}
