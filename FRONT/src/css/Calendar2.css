@@ -1,0 +1,70 @@
+.react-calendar{
+    width: 80%;
+    height: 120%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+}
+.react-calendar__navigation{
+    background-color: rgba(239, 159, 17, 0.6);
+    padding-top: 5px;
+    border-radius: 10px 10px 0 0; /* 왼쪽 위와 오른쪽 위에만 10px를 적용 */
+}
+.react-calendar__navigation button {
+    pointer-events: none;
+}
+
+
+/* 1. 현재 날짜 스타일 */
+.react-calendar__tile--now {
+    background: #f0f0f0; /* 배경색 */
+    color: #333; /* 글자색 */
+}
+
+/* 2. 달력 년/월 표시 글씨 커스텀 */
+.react-calendar__navigation__label > span {
+    font-size: 20px; /* 글자 크기 */
+    font-weight: bold; /* 글자 두껍게 */
+    color: #333; /* 글자색 */
+}
+
+/* 3. 요일 section 커스텀 */
+.react-calendar__month-view__weekdays {
+}
+.react-calendar__month-view__weekdays abbr {
+    color: #999; /* 글자색 */
+    font-size: 15px; /* 글자 크기 */
+    font-weight: bold; /* 글자 두껍게 */    
+    text-decoration: none; /* 언더바 제거 */
+
+}
+
+/* 4. day 타일 한개 한개 모양 커스텀 */
+.react-calendar__tile {
+    color: #333; /* 글자색 */
+    background: transparent; /* 배경색 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    padding: 15px;
+}
+
+/* 5. day 타일 hover, focus 시 모양 커스텀 */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    background-color: #ef9F11; /* 배경색 */
+    color: #333; /* 글자색 */
+}
+
+/* 6. 날짜 선택 됐을 때 day 타일 커스텀 */
+.react-calendar__tile--active {
+    color: #fff; /* 글자색 */
+    background-color: #ef9F11; /* 배경색 */
+}
+
+/* 7. (range일 경우)시작날짜, 끝 날짜 커스텀 */
+.react-calendar__tile--rangeStart,
+.react-calendar__tile--rangeEnd {
+    background-color: #ef9F11; /* 배경색 */
+    color: #fff; /* 글자색 */
+}
+
+
