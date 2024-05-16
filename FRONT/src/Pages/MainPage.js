@@ -1,19 +1,28 @@
 import bgImage from "../images/mainimage1.jpg";
-import { Container } from "react-bootstrap";
+import { Container, Card, Button } from "react-bootstrap";
 import TopNav from "../Components/TopNav";
 import CenterContent from "../Components/CenterContent";
 import CircleButton from "../Components/CircleButton";
+import CheckCalendar from "../Components/CheckCalendar";
+import CampCards from "../Components/CampCards";
 import Koreamap from "../Components/KoreaMap";
+import Calendar2 from "../Components/Calendar2";
+import Weather from "../Components/Weather";
 import CampingArea from '../Components/CampingArea';
 import Footer from "../Components/Footer";
-import { useState, useEffect } from "react";
 
+
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function MainPage() {
-  
   const [location, setLocation] = useState("서울");
   const today = new Date();
   const todayDateString = today.toLocaleDateString("ko-KR");
+
+
+
 
   const handleLocationChange = (eventKey) => {
     setLocation(eventKey);
