@@ -30,6 +30,7 @@ function ProductList() {
             ))}
           </Row>
           <br />
+          <hr style={{width:"80%", margin:" 0 auto"}}/>
         </div>
         {campingData.map((camping, index) => (
           <Camping

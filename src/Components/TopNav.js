@@ -9,7 +9,7 @@ function TopNav(props) {
       <Container>
         {/* 왼쪽 끝에 Nav */}
         <Nav className="me-auto">
-        <Nav.Link onClick={() => navigate("/MainPage")}>Home</Nav.Link>
+        <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
           <Nav.Link href="#features">Features</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link>
         </Nav>
@@ -23,7 +23,7 @@ function TopNav(props) {
         </Navbar.Brand>
         {/* 오른쪽 끝에 Nav */}  {/*오른쪽 왼쪽 글자 길이가 안맞으면 브랜드 중앙정렬이 안됨 주의하세요 - 고정값을 주어야 하는지 고민*/}
         <Nav className="ms-auto">
-          <Nav.Link onClick={() => navigate("/productlist")}>List</Nav.Link>
+          <Nav.Link onClick={() => navigate("/productlist")}>상품목록</Nav.Link>
           
           {/* 로그인 화면 버튼 */}
           <Nav className="login">

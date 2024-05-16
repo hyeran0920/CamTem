@@ -64,7 +64,7 @@ function ProductDetail() {
   };
 
   return (
-    <Container fluid style={{ margin: 0, padding: 0 }}>
+<Container fluid style={{ margin: 0, padding: 0, fontFamily: 'SUITE-Regular' }} id="productdetail">
       {/* TopNav */}
       <TopNav bg="dark" theme="dark" />
       {/* 썸네일용 상품 소개 */}
@@ -94,36 +94,41 @@ function ProductDetail() {
             <br />
             {/* button css 변경 */}
             {/* camping.resveUrl이 없으면 버튼 렌더링 안함 */}
-            <button>
+            <button
+            style={{
+                alignItems: "center",
+                backgroundColor: "#008b8b",
+                color: "white",
+                padding: "5px 10px",
+                border: "none"}}>
+                    
               <a
                 href={camping.homepage.startsWith("http") ? camping.homepage : `https://${camping.homepage}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{color:"white", textDecoration:"none"}}
               >
                 캠핑장 홈페이지
               </a>
             </button>
-            <button>
+            <button              
+            style={{
+                alignItems: "center",
+                backgroundColor: "#008b8b",
+                color: "white",
+                padding: "5px 10px",
+                marginLeft:"10px",
+                border: "none"}}>
+                
               {camping.resveUrl && (
-                <a href={camping.resveUrl} target="_blank" rel="noopener noreferrer">
+                <a href={camping.resveUrl} target="_blank" rel="noopener noreferrer"
+                style={{color:"white", textDecoration:"none"}}
+                >
                   캠핑장 예약하기
                 </a>
               )}
             </button>
-            <button
-              style={{
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "center",
-                backgroundColor: "hotpink",
-                color: "white",
-                padding: "5px 10px",
-                border: "none",
-              }}
-            >
-              <GoHeart style={{ marginRight: "5px" }} />
-              찜하기
-            </button>
+
           </div>
         </div>
         <br />
@@ -184,7 +189,7 @@ function ProductDetail() {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <FaBullhorn style={{ marginRight: "5px" }} />
-            <p style={{ margin: "0" }}>캠핑장 소개</p>
+            <h4 style={{ margin: "0" }}>캠핑장 소개</h4>
             <br />
           </div>
           <br />
@@ -196,18 +201,22 @@ function ProductDetail() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              margin: "0 0",
+              margin: "0 auto",
               padding: "0 0",
+              width:"90%"
             }}
           >
-            <div style={{ display: "flex", width: "100%" }}>
-              <br />
-              <h5 className="campingShortInfo" style={{ width: "100%", whiteSpace: "pre-wrap", textAlign: "initial" }}>
-                {camping.intro}
-                <br />
+            <div style={{ display: "flex", width: "80%", margin:"0 auto" }}>
+            <br />
+            <h6 className="campingShortInfo" style={{ width: "100%", whiteSpace: "pre-wrap", textAlign: "initial",fontSize:"18px" }}>{camping.intro}
+            <br />
+            <br />
                 <br />
                 {camping.featureNm}
-              </h5>
+                <br />
+                <br />
+
+              </h6>
 
               {/*소개가 null일때 대체되는 문구 생각하기*/}
             </div>
@@ -220,31 +229,27 @@ function ProductDetail() {
         {/* 캠핑장 주요 시설 */}
         <div style={{ display: "flex", alignItems: "center" }}>
           <FaBullhorn style={{ marginRight: "5px" }} />
-          <p style={{ margin: "0" }}>캠핑장 주요시설</p>
+          <h4 style={{ margin: "0" }}>캠핑장 주요시설</h4>
           <br />
         </div>
         <br />
-
-        <div
-          id="clickUseInfo"
-          style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "300px" }}
-        >
-          <div style={{ backgroundColor: "#f2f2f2", width: "100%", height: "50%" }}>{camping.sbrsCl}</div>
+        <div id="clickUseInfo" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "300px" }}>
+                    <div style={{ backgroundColor: "#f5f5f5", width: "80%", height: "50%",margin:"0 auto", padding:"20px", borderRadius:"10px" }}>{camping.sbrsCl}</div>
         </div>
         <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
           <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
         </div>
         {/* table css도 변경하기 */}
         <div className="tableEtc">
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center"}}>
             <FaBullhorn style={{ marginRight: "5px" }} />
-            <p style={{ margin: "0" }}>캠핑장 기타시설</p>
+            <h4 style={{ margin: "0" }}>캠핑장 기타시설</h4>
             <br />
           </div>
           <br />
           <br />
-          <div style={{ width: "100%" }}>
-            <table className="table">
+          <div style={{ width: "80%", margin:"20px auto", backgroundColor:"#f5f5f5", borderRadius:"10px",padding:"20px 20px 10px 30px" }}>
+            <table className="table" style={{padding:"10px 20px"}}>
               <tr>
                 <th style={{ width: "35%" }}>주요시설</th>
                 <td>가격1</td>
@@ -290,14 +295,14 @@ function ProductDetail() {
           <div className="mapContainer" id="clickLocationInfo" style={{ textAlign: "center" }}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <FaCrosshairs style={{ marginRight: "5px" }} />
-              <p style={{ margin: "0" }}>캠핑장 위치</p>
+              <h4 style={{ margin: "0" }}>캠핑장 위치</h4>
               <br />
             </div>
             <br />
 
             <KakaoMap style={{ margin: "0 auto" }} />
-
-            <p>오시는길</p>
+            <br/>
+            <p>{camping.facltNm} 오시는길</p>
             <p>{camping.direction}</p>
           </div>
         </div>
@@ -308,12 +313,12 @@ function ProductDetail() {
         <div id="clickFAQ">
           <div style={{ display: "flex", alignItems: "center" }}>
             <FaQuestion style={{ marginRight: "5px" }} />
-            <p style={{ margin: "0" }}>자주 묻는 질문</p>
+            <h4 style={{ margin: "0" }}>자주 묻는 질문</h4>
             <br />
           </div>
           <br />
 
-          <Accordion defaultActiveKey={["0"]} alwaysOpen>
+          <Accordion defaultActiveKey={["0"]} alwaysOpen style={{width: "80%",margin:"0 auto"}}>
             <Accordion.Item eventKey="0" style={{ backgroundColor: "#f2f2f2" }}>
               <Accordion.Header>[조회방법] 여러 캠핑장을 검색하는 방법</Accordion.Header>
               <Accordion.Body>
@@ -372,6 +377,9 @@ function ProductDetail() {
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
+          <br/>
+          <br/>
+          <br/>
         </div>
       </div>
       {/* Footer */}
