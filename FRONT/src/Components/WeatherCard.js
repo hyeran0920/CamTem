@@ -23,9 +23,9 @@ function WeatherCard({ weather }) {
 
   // 날씨 상태에 따른 아이콘 컴포넌트 매핑
   const weatherIcons = {
-    Rain: <TiWeatherDownpour size="120" />,
-    Clear: <TiWeatherSunny size="120" />,
-    Clouds: <TiWeatherCloudy size="120" />,
+    Rain: <TiWeatherDownpour size="80" />,
+    Clear: <TiWeatherSunny size="80" />,
+    Clouds: <TiWeatherCloudy size="80" />,
     // 추가적인 날씨 상태에 대한 아이콘을 추가할 수 있습니다.
   };
 
@@ -33,18 +33,27 @@ function WeatherCard({ weather }) {
   const weatherIcon = weatherIcons[weather.weather[0].main];
 
   return (
-    <Card border="secondary" className="mb-2" bg="info" text="white" style={{ width: "20%", margin: "10px 10px" }}>
-      <Card.Header style={{ textAlign: "center", fontSize: "1.3rem" }}>{formatDate(weather.dt)}</Card.Header>
-      <Card.Body>
-        <div style={{ display: "flex", justifyContent: "center" }}>{weatherIcon}</div>
-        <Card.Text style={{ display: "flex", justifyContent: "space-between" }}>
-          <span>
-            습도 : {weather.humidity} <br /> 강수확률 : {weather.pop * 100}%
-          </span>
-          <span>{weather.temp.day}°C</span>
-        </Card.Text>
-      </Card.Body>
-    </Card>
+<Card className="mb-2 shadow-sm" text="white" style={{ width: "15%", margin: "10px 10px", border: "none", backgroundColor:"#73C2FB" }}>
+  <Card.Body style={{ padding: "5px 3px" }}>
+    <div style={{ fontSize: "18px", fontWeight:"600",textAlign: "center" }}>{formatDate(weather.dt)}</div>
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      {weatherIcon}
+      <div>
+      <span>
+      {Math.floor(weather.temp.min)}/ <span style={{ fontWeight: "bold", color:"#FF5B5B" }}>{Math.floor(weather.temp.max)} °C</span>
+    </span>
+        <br />
+        <span style={{ fontSize: "13px" }}>강수확률: {weather.pop * 100}%</span>
+        {weather.rain && weather.rain["3h"] !== undefined && (
+          <span><br /> 강수량: {weather.rain["3h"]} mm</span>
+        )}
+      </div>
+    </div>
+  </Card.Body>
+</Card>
+
+
+
   );
 }
 export default WeatherCard;

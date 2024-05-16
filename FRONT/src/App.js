@@ -16,15 +16,16 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/productlist" element={<ProductList />} />
 
-          {/* 내가 작성한 부분 ////////////////////////// */}
+          
           {/* 로그인화면버튼: 로그인 한 후에는 마이페이지 버튼으로 바뀌게 하고 싶음*/}
           <Route path="/LoginPage" element={<LoginPage />}/>
+          
           {/* 회원가입화면버튼: 로그인 한 후에는 로그아웃 버튼으로 바뀌게 하고 싶음*/}
           <Route path="/RegisterPage" element={<RegisterPage />}/>
+
           {/* 캠핑장 상세페이지 */}
           {/* 실제로 사용될 캠핑장의 contentId */}
-          <Route path="/ProductDetail/:contentId" element={<ProductDetail />}/>
-          {/* /////////////////////////////////////////// */}
+          <Route path="/ProductDetail" element={<ProductDetail />}/>
 
 
         </Routes>

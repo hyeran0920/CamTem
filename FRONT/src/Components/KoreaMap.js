@@ -30,7 +30,7 @@ function Koreamap({ setLocation }) {
     `;
 
     return (
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "100%"}}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 524 631" aria-label="Map of South Korea">
                 <CustomPath
                     id="busan"

@@ -48,8 +48,18 @@ function SearchBar() {
     서울: "Seoul",
     부산: "Busan",
     인천: "Incheon",
-    // 나머지 도시들도 이와 같이 매핑
+    대구: "Daegu",
+    광주: "Gwangju",
+    대전: "Daejeon",
+    울산: "Ulsan",
+    세종: "Sejong",
+    경기: "Gyeonggi",
+    강원: "Gangwon",
+    충청북도: "Chungcheongbuk-do",
+    충청남도: "Chungcheongnam-do",
+    전북: "Jeollabuk-do",
   };
+  
 
   // 날짜 선택 기능
   const [dateRange, setDateRange] = useState({
@@ -85,9 +95,10 @@ function SearchBar() {
       const endDate = dateRange.endDate;
 
       if (!startDate || !endDate) {
-        console.log("시작일과 종료일을 선택하세요.");
+        window.alert("시작일과 종료일을 선택하세요.");
         return;
       }
+      
 
       // 날짜 범위에서 각 날짜를 배열에 추가
       const dates = [];
@@ -103,15 +114,16 @@ function SearchBar() {
       const regionInEnglish = cityMap[searchTerm[0]] || "Seoul"; //Seoul은 지역입력 안했을때 기본값
 
       // 서울을 선택했을 때 mapX, mapY, radius 값을 설정합니다.
-      const mapCoordinates = {
-        서울: { mapX: 126.9783882, mapY: 37.5666103, radius: 15000 },
-        부산: { mapX: 129.0756416, mapY: 35.1795543, radius: 10000 },
-        인천: { mapX: 126.7052062, mapY: 37.4562557, radius: 12000 }, // 예시 좌표 및 반경
-        // 다른 도시들에 대한 좌표도 이와 같이 추가할 수 있습니다.
-      };
+      // const mapCoordinates = {
+      //   서울: { mapX: 126.9783882, mapY: 37.5666103, radius: 15000 },
+      //   부산: { mapX: 129.0756416, mapY: 35.1795543, radius: 10000 },
+      //   인천: { mapX: 126.7052062, mapY: 37.4562557, radius: 12000 }, // 예시 좌표 및 반경
+      //   // 다른 도시들에 대한 좌표도 이와 같이 추가할 수 있습니다.
+      // };
 
       // 사용자가 선택한 도시에 따라 mapX, mapY, radius 정보를 포함합니다.
-      const selectedCityInfo = mapCoordinates[searchTerm[0]] || mapCoordinates["서울"]; // 기본값으로 서울 설정
+      const cityName =searchTerm[0]|| "서울"; // 기본값으로 서울 설정
+      // const selectedCityInfo = mapCoordinates[searchTerm[0]] || mapCoordinates["서울"]; // 기본값으로 서울 설정
 
       const requestData = {
         region: regionInEnglish,
@@ -120,31 +132,17 @@ function SearchBar() {
       };
 
       console.log(requestData);
-      console.log(selectedCityInfo);
+      console.log(cityName);
 
-      // const weatherResponse = await axios.post("/api/recommend-campsite", JSON.stringify(requestData), {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-
-      // console.log(weatherResponse);
-
-      // const campResponse = await axios.post("/api/productlist", JSON.stringify(selectedCityInfo), {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-      // 백엔드 
       const [weatherResponse, campResponse] = await Promise.all([
         axios.post("/api/recommend-campsite", requestData),
-        axios.post("/api/productlist", selectedCityInfo),
+        axios.get(`/api/productlist?city=${cityName}`),
       ]);
 
       console.log(campResponse);
 
       dispatch(changeWeatherData(weatherResponse.data.list));
-      dispatch(changeCampingData(campResponse.data.response.body.items.item));
+      dispatch(changeCampingData(campResponse.data));
       navigate("/productlist");
     } catch (error) {
       console.log(error);
@@ -173,6 +171,11 @@ function SearchBar() {
       //이렇게 하면 해당 데이터의 dt를 날짜로 변경가능
     }
   }, [searchTerm, dateRange, numPeople, weatherData]);
+
+
+
+  
+
 
   return (
     <Container>

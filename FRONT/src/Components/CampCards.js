@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import defaultImage from '../images/image44.png';
 import { Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
-import { changeCampingDetailData } from "../store";
 
 // Fisher-Yates 알고리즘을 사용하여 배열 섞기
 function shuffleArray(array) {
@@ -15,7 +14,6 @@ function shuffleArray(array) {
 }
 
 function CampCards(props) {
-  
   const [kk, setKk] = useState(null);
 
   useEffect(() => {
@@ -27,6 +25,7 @@ function CampCards(props) {
           );
           
           setKk(response.data);
+          console.log(response.data)
         }
       } catch (error) {
         console.error(error);
