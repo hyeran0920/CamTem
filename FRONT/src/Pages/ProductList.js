@@ -3,21 +3,22 @@ import TopNav from "../Components/TopNav";
 import WeatherCard from "../Components/WeatherCard";
 import SearchBar from "../Components/Reservation";
 import CenterContent from "../Components/CenterContent";
-import Reservation from "../Components/Reservation"
+import Reservation from "../Components/Reservation";
 import Footer from "../Components/Footer";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Camping from "../Components/Camping";
-
+import { useNavigate } from "react-router-dom";
 
 function ProductList() {
   const weatherData = useSelector((state) => state.weatherData);
   const campingData = useSelector((state) => state.campingData);
+  const navigate = useNavigate();
   return (
     <div className="productList">
       <Container fluid style={{ margin: 0, padding: 0 }}>
         <TopNav bg="dark" theme="dark" />
-        <div style={{ backgroundColor: "#f5f5f5" }}>
+        <div>
           <br />
           <div style={{ width: "70%", margin: "10px auto" }}>
             <Reservation />
@@ -31,7 +32,11 @@ function ProductList() {
           <br />
         </div>
         {campingData.map((camping, index) => (
-          <Camping key={index} camping={camping} />
+          <Camping
+            key={index}
+            camping={camping}
+            onNavigate={() => navigate(`/ProductDetail/${camping.contentId}`, { state: { camping } })}
+          />
         ))}
       </Container>
       <Footer />

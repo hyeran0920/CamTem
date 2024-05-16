@@ -25,7 +25,7 @@ function App() {
 
           {/* 캠핑장 상세페이지 */}
           {/* 실제로 사용될 캠핑장의 contentId */}
-          <Route path="/ProductDetail" element={<ProductDetail />}/>
+          <Route path="/ProductDetail/:contentId" element={<ProductDetail />}/>
 
 
         </Routes>

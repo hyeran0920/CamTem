@@ -59,7 +59,6 @@ function SearchBar() {
     충청남도: "Chungcheongnam-do",
     전북: "Jeollabuk-do",
   };
-  
 
   // 날짜 선택 기능
   const [dateRange, setDateRange] = useState({
@@ -81,12 +80,6 @@ function SearchBar() {
     setDateRange({ startDate: start, endDate: end });
   };
 
-  const [data, setData] = useState({
-    region: "",
-    date: "",
-    numPeople: "",
-  });
-
   const handleSearch = async (event) => {
     event.preventDefault();
 
@@ -98,7 +91,6 @@ function SearchBar() {
         window.alert("시작일과 종료일을 선택하세요.");
         return;
       }
-      
 
       // 날짜 범위에서 각 날짜를 배열에 추가
       const dates = [];
@@ -122,9 +114,9 @@ function SearchBar() {
       // };
 
       // 사용자가 선택한 도시에 따라 mapX, mapY, radius 정보를 포함합니다.
-      const cityName =searchTerm[0]|| "서울"; // 기본값으로 서울 설정
       // const selectedCityInfo = mapCoordinates[searchTerm[0]] || mapCoordinates["서울"]; // 기본값으로 서울 설정
 
+      const cityName = searchTerm[0] || "서울";
       const requestData = {
         region: regionInEnglish,
         dates,
@@ -139,7 +131,7 @@ function SearchBar() {
         axios.get(`/api/productlist?city=${cityName}`),
       ]);
 
-      console.log(campResponse);
+      console.log(campResponse.data);
 
       dispatch(changeWeatherData(weatherResponse.data.list));
       dispatch(changeCampingData(campResponse.data));
@@ -171,11 +163,6 @@ function SearchBar() {
       //이렇게 하면 해당 데이터의 dt를 날짜로 변경가능
     }
   }, [searchTerm, dateRange, numPeople, weatherData]);
-
-
-
-  
-
 
   return (
     <Container>
