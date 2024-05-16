@@ -51,8 +51,10 @@ public class Camp {
         private String facltNm;
         private String intro;
         private String firstImageUrl;
+        private String addr1; // 주소
+        private String lineIntro; // 한줄소개
+        private String induty; // 야영장 분류
 
-        // Getters and setters
     }
 
 }

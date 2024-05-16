@@ -24,7 +24,7 @@ public class CampingAPI {
     public CampingAPI(RestTemplateBuilder restTemplateBuilder){
 
         this.restTemplateC = restTemplateBuilder.build();
-        this.serviceKey="X9F8sbE9AswIGdXTkEMRuTQ3Thf9YhnNBqbTxbDGGhFZPV102t1ga%2FRE2Sa1EPtRRKQYAJr4HbkWSqULP5aPTw%3D%3D";
+        this.serviceKey="kpznyRO%2Bj%2BQrqgHf88dGEFWQ27h0A6d%2FfoqRDlYX2hveqpGN%2F9y6xda7hcdmJCJip6UoIdI3Pm7EEXiiArHyDg%3D%3D";
         this.baseUrl="http://apis.data.go.kr/B551011/GoCamping/locationBasedList?";
     }
 

@@ -104,13 +104,9 @@ function ProductDetail() {
                         <h6>운영일 : {content?.operDeCl}</h6>
                         <br />
                         <br />
-                        {/* button css 변경 */}
-                        <button >{content?.resveUrl}</button>
-                        <button style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", backgroundColor: "hotpink", color: "white", padding: "5px 10px", border: "none" }}>
-                            <GoHeart style={{ marginRight: "5px" }} />찜하기
+                        <button style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", backgroundColor: "gray", color: "white", padding: "5px 10px", border: "none"}}>
+                            <GoHeart style={{ marginRight: "5px"}} />예약하기
                         </button>
-
-
                     </div>
                 </div>
                 <br />
@@ -249,91 +245,91 @@ function ProductDetail() {
                             </tr>
                         </table>
 
-                    
+
+                    </div>
+                    <div className="hr" style={{ width: '100%', margin: '0 auto' }}>
+                        <hr style={{ width: '100%', border: 'none', borderBottom: '1px solid black' }} />
+                    </div>
+                    {/* 캠핑장의 위치 : 지도 api + css는 KakaoMap 컴포넌트 안에서 실행하기 */}
+                    <div className="mapContainer" id="clickLocationInfo" style={{ textAlign: "center" }}>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <FaCrosshairs style={{ marginRight: "5px" }} />
+                            <p style={{ margin: "0" }}>캠핑장 위치</p>
+                            <br />
+                        </div>
+                        <br />
+
+                        <KakaoMap style={{ margin: "0 auto" }} />
+
+                        <p>오시는길</p>
+                        <p>{content?.direction}</p>
+                    </div>
                 </div>
                 <div className="hr" style={{ width: '100%', margin: '0 auto' }}>
                     <hr style={{ width: '100%', border: 'none', borderBottom: '1px solid black' }} />
                 </div>
-                {/* 캠핑장의 위치 : 지도 api + css는 KakaoMap 컴포넌트 안에서 실행하기 */}
-                <div className="mapContainer" id="clickLocationInfo" style={{ textAlign: "center" }}>
+                {/* 공지사항 : 아코디언 */}
+                <div id="clickFAQ">
                     <div style={{ display: "flex", alignItems: "center" }}>
-                        <FaCrosshairs style={{ marginRight: "5px" }} />
-                        <p style={{ margin: "0" }}>캠핑장 위치</p>
+                        <FaQuestion style={{ marginRight: "5px" }} />
+                        <p style={{ margin: "0" }}>자주 묻는 질문</p>
                         <br />
                     </div>
                     <br />
 
-                    <KakaoMap style={{ margin: "0 auto" }} />
-                    
-                    <p>오시는길</p>
-                    <p>{content?.direction}</p>
+                    <Accordion defaultActiveKey={['0']} alwaysOpen >
+                        <Accordion.Item eventKey="0" style={{ backgroundColor: "#f2f2f2" }}>
+                            <Accordion.Header  >[조회방법] 여러 캠핑장을 검색하는 방법</Accordion.Header>
+                            <Accordion.Body>
+                                저희 CAMTEM에서는 메인 페이지의 검색창에서 13개의 지역별 캠핑장을 조회하실 수 있습니다.<br />
+                                1. 지역, 날짜, 인원 수 검색창에 원하시는 지역을 선택하시면 해당 지역의 캠핑장이 리스트로 조회됩니다.<br />
+                                2. 출력된 리스트의 캠핑장들의 상세 내용을 보기 원하신다면 자세히 보기 버튼을 눌러 확인하시면 됩니다.<br />
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="1">
+                            <Accordion.Header>[반려견 여부] 반려견 동반 캠핑장 관련 자주하는 질문과 답변 안내</Accordion.Header>
+                            <Accordion.Body>
+                                CAMTEM에서는 반려견과 함께 캠핑장을 이용하고 싶으신 고객님들을 위해 반려견 동반 가능 여부를 체크해 상세 페이지에 표시해드리고 있으니 확인 후 많은 이용 부탁드립니다.<br />
+                                또한, 저희 CAMTEM은 캠핑장 추천 사이트이므로 더 정확한 정보를 원하신다면 각 캠핑장의 사이트에서 확인해주시길 바랍니다.
+
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="2">
+                            <Accordion.Header>[입실 방법] 가족 구성원 대신 입실에 관하여</Accordion.Header>
+                            <Accordion.Body>
+                                대부분의 캠핑장에서는 직계존비속· 배우자· 형제자매 및 배우자의 부모인 경우 가족관계증명서 증빙시 이용가능합니다.<br />
+                                다만 더 정확한 정보를 위해서 이용하시려는 캠핑장의 사이트에서 확인해주시길 바랍니다.<br />
+                                ※ 양도서류<br /><br />
+
+
+                                1. 예약자의 배우자 · 부모 · 자녀 : 예약자 기준 가족관계증명서(최근 3개월 이내 발급본), 실사용자의 신분증<br />
+
+                                2. 예약자의 형제 · 자매 : 예약자 부모 기준 가족관계증명서(최근 3개월 이내 발급본), 실사용자의 신분증<br />
+
+                                3. 예약자의 배우자의 부모 : 예약자의 가족관계증명서(최근 3개월 이내 발급본), 예약자 배우자의 부모님 명의 가족관계 증명서(최근 3개월 이내 발급본), 실사용자 신분증<br /><br />
+
+
+                                ※캠핑장마다 정책이 다르니 반드시 확인하시기 바랍니다.
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="3">
+                            <Accordion.Header>[사이트 안내] 사이트 관련 안내</Accordion.Header>
+                            <Accordion.Body>
+                                저희 CAMTEM은 캠핑장 추천 사이트로 예약 및 결제를 지원하지 않습니다.<br />
+                                예약이나 결제를 원하신다면 각 캠핑장의 사이트로 넘어가서 예약/결제 진행을 부탁드립니다.
+                            </Accordion.Body>
+                        </Accordion.Item>
+                        <Accordion.Item eventKey="4">
+                            <Accordion.Header>[정보제공] 캠핑장 정보 제공 관련 안내</Accordion.Header>
+                            <Accordion.Body>
+                                저희 캠핑장 추천 사이트 CAMTEM에서 제공하는 캠핑장 정보는 한국관광공사 고캠핑에서 제공하는 정보입니다.
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </Accordion>
                 </div>
             </div>
-            <div className="hr" style={{ width: '100%', margin: '0 auto' }}>
-                <hr style={{ width: '100%', border: 'none', borderBottom: '1px solid black' }} />
-            </div>
-            {/* 공지사항 : 아코디언 */}
-            <div id="clickFAQ">
-                <div style={{ display: "flex", alignItems: "center" }}>
-                    <FaQuestion style={{ marginRight: "5px" }} />
-                    <p style={{ margin: "0" }}>자주 묻는 질문</p>
-                    <br />
-                </div>
-                <br />
-
-                <Accordion defaultActiveKey={['0']} alwaysOpen >
-                    <Accordion.Item eventKey="0" style={{ backgroundColor: "#f2f2f2" }}>
-                        <Accordion.Header  >[조회방법] 여러 캠핑장을 검색하는 방법</Accordion.Header>
-                        <Accordion.Body>
-                            저희 CAMTEM에서는 메인 페이지의 검색창에서 13개의 지역별 캠핑장을 조회하실 수 있습니다.<br />
-                            1. 지역, 날짜, 인원 수 검색창에 원하시는 지역을 선택하시면 해당 지역의 캠핑장이 리스트로 조회됩니다.<br />
-                            2. 출력된 리스트의 캠핑장들의 상세 내용을 보기 원하신다면 자세히 보기 버튼을 눌러 확인하시면 됩니다.<br />
-                        </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="1">
-                        <Accordion.Header>[반려견 여부] 반려견 동반 캠핑장 관련 자주하는 질문과 답변 안내</Accordion.Header>
-                        <Accordion.Body>
-                            CAMTEM에서는 반려견과 함께 캠핑장을 이용하고 싶으신 고객님들을 위해 반려견 동반 가능 여부를 체크해 상세 페이지에 표시해드리고 있으니 확인 후 많은 이용 부탁드립니다.<br />
-                            또한, 저희 CAMTEM은 캠핑장 추천 사이트이므로 더 정확한 정보를 원하신다면 각 캠핑장의 사이트에서 확인해주시길 바랍니다.
-
-                        </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="2">
-                        <Accordion.Header>[입실 방법] 가족 구성원 대신 입실에 관하여</Accordion.Header>
-                        <Accordion.Body>
-                            대부분의 캠핑장에서는 직계존비속· 배우자· 형제자매 및 배우자의 부모인 경우 가족관계증명서 증빙시 이용가능합니다.<br />
-                            다만 더 정확한 정보를 위해서 이용하시려는 캠핑장의 사이트에서 확인해주시길 바랍니다.<br />
-                            ※ 양도서류<br /><br />
-
-
-                            1. 예약자의 배우자 · 부모 · 자녀 : 예약자 기준 가족관계증명서(최근 3개월 이내 발급본), 실사용자의 신분증<br />
-
-                            2. 예약자의 형제 · 자매 : 예약자 부모 기준 가족관계증명서(최근 3개월 이내 발급본), 실사용자의 신분증<br />
-
-                            3. 예약자의 배우자의 부모 : 예약자의 가족관계증명서(최근 3개월 이내 발급본), 예약자 배우자의 부모님 명의 가족관계 증명서(최근 3개월 이내 발급본), 실사용자 신분증<br /><br />
-
-
-                            ※캠핑장마다 정책이 다르니 반드시 확인하시기 바랍니다.
-                        </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="3">
-                        <Accordion.Header>[사이트 안내] 사이트 관련 안내</Accordion.Header>
-                        <Accordion.Body>
-                            저희 CAMTEM은 캠핑장 추천 사이트로 예약 및 결제를 지원하지 않습니다.<br />
-                            예약이나 결제를 원하신다면 각 캠핑장의 사이트로 넘어가서 예약/결제 진행을 부탁드립니다.
-                        </Accordion.Body>
-                    </Accordion.Item>
-                    <Accordion.Item eventKey="4">
-                        <Accordion.Header>[정보제공] 캠핑장 정보 제공 관련 안내</Accordion.Header>
-                        <Accordion.Body>
-                            저희 캠핑장 추천 사이트 CAMTEM에서 제공하는 캠핑장 정보는 한국관광공사 고캠핑에서 제공하는 정보입니다.
-                        </Accordion.Body>
-                    </Accordion.Item>
-                </Accordion>
-            </div>
-        </div>
-            {/* Footer */ }
-    <Footer />
+            {/* Footer */}
+            <Footer />
         </Container >
     );
 };

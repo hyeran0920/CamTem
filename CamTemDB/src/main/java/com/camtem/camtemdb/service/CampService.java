@@ -68,6 +68,33 @@ public class CampService {
         entity.setAddr1(dto.getAddr1());
         entity.setLineIntro(dto.getLineIntro());
         entity.setInduty(dto.getInduty());
+        entity.setDoNm(dto.getDoNm());
+        entity.setMapX(dto.getMapX());
+        entity.setMapY(dto.getMapY());
+        entity.setTel(dto.getTel());
+        entity.setHomepage(dto.getHomepage());
+        entity.setResveUrl(dto.getResveUrl());
+        entity.setResveUrl(dto.getResveUrl());
+        entity.setTrlerAcmpnyAt(dto.getTrlerAcmpnyAt());
+        entity.setCaravAcmpnyAt(dto.getCaravAcmpnyAt());
+        entity.setToiletCo(dto.getToiletCo());
+        entity.setSwrmCo(dto.getSwrmCo());
+        entity.setWtrplCo(dto.getWtrplCo());
+        entity.setSbrsCl(dto.getSbrsCl());
+        entity.setExtshrCo(dto.getExtshrCo());
+        entity.setAnimalCmgCl(dto.getAnimalCmgCl());
+        entity.setAllar(dto.getAllar());
+        entity.setHvofBgnde(dto.getHvofBgnde());
+        entity.setHvofEnddle(dto.getHvofEnddle());
+        entity.setFeatureNm(dto.getFeatureNm());
+        entity.setLctCl(dto.getLctCl());
+        entity.setDirection(dto.getDirection());
+        entity.setManageNmpr(dto.getManageNmpr());
+        entity.setSitedStnc(dto.getSitedStnc());
+        entity.setOperPdCl(dto.getOperPdCl());
+        entity.setOperDeCl(dto.getOperDeCl());
+        entity.setBrazierCl(dto.getBrazierCl());
+        entity.setEqpmnLendCl(dto.getEqpmnLendCl());
         return entity;
     }
 

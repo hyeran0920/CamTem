@@ -20,7 +20,7 @@ function MainPage() {
   const [location, setLocation] = useState("서울");
   const today = new Date();
   const todayDateString = today.toLocaleDateString("ko-KR");
-  
+
 
 
 
@@ -61,64 +61,27 @@ function MainPage() {
         </h1>
         <CircleButton location={location} handleLocationChange={handleLocationChange} />
       </Container>
-
-      <Container id="date-section" fluid style={{ width: "100%" }}>
-  <h1 style={{ display: "inline-block", marginTop: "50px", fontWeight: "bold" }}>언제 떠날까요?</h1>
-  <div style={{ display: "flex", marginBottom: "100px", position: "relative" }}>
-
-    {/* 왼쪽 섹션 */}
-    <div style={{ flex: 1, marginLeft: "20px", textAlign: "center" }}>
-      <div style={{ marginTop: "30px", marginBottom: "75px" }}>
-        <h2 style={{ color: "#333", marginBottom: "20px" }}>
-          여행일의 날씨를 확인해보세요!
-        </h2>
+      <Container id="date-section" fluid style={{ width: "100%" }} >
         <br />
-        <div style={{ marginLeft: "100px" }}>
-          <Calendar2 todayDateString={todayDateString} />
-        </div>
+        <h1 style={{ fontWeight: "bold" }}>{location} 추천 캠핑장</h1>
         <br />
         <br />
-        <h2>선택한 날짜: {todayDateString}</h2>
-      </div>
-    </div>
-
-    {/* 오른쪽 섹션 */}
-    <div style={{ flex: 1, marginRight: "20px", textAlign: "center" }}>
-      <h2 style={{ color: "#333", marginBottom: "20px", marginTop: "30px" }}>
-        {todayDateString} {location} 예상날씨
-      </h2>
-      <div className="weather-card" style={{ padding: "20px", borderRadius: "10px", marginBottom: "20px" }}>
-        <Weather key={todayDateString} location={location} />
-      </div>
-      <div className="activity-section" style={{ padding: "10px", borderRadius: "10px" }}>
-        <CampCards location={location} handleLocationChange={handleLocationChange} />
-      </div>
-    </div>
-  </div>
-</Container>
-
-
-
-
-
-      <Container fluid style={{ width: "100%" }}>
-        <h1 style={{fontWeight: "bold"}}>{location} 추천 캠핑장</h1>
-        <br />
-        <br />
-        <br />
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", justifyContent:"center"}}>
           {/* 왼쪽 세션 */}
-          <div style={{ width:"65%" , paddingRight: "10px" }}>
+          <div style={{ width: "50%", paddingRight: "10px", paddingTop:"90px"}}>
             <CampingArea location={location} handleLocationChange={handleLocationChange} />
           </div>
 
           {/* 오른쪽 세션 */}
-          <div style={{ width:"30%", paddingLeft: "10px" }}>
-          <Koreamap location={location} setLocation={setLocation} />
+          <div style={{ width: "35%", marginLeft: "100px" }}>
+            <Koreamap location={location} setLocation={setLocation} />
           </div>
         </div>
+        <br />
+        <br />
+        <br />
       </Container>
-        <Footer />
+      <Footer />
     </div>
   );
 }

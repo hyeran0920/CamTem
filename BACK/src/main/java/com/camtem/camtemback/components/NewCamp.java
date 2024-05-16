@@ -1,16 +1,13 @@
-package com.camtem.camtemdb.dto;
+package com.camtem.camtemback.components;
 
-
-import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
-
-
-
+import lombok.ToString;
 
 @Getter
 @Setter
-public class CampDTO {
+@ToString
+public class NewCamp {
     private int contentId;
     private String facltNm;
     private String intro;
@@ -44,8 +41,4 @@ public class CampDTO {
     private String operDeCl;//운영일
     private String brazierCl;//화로대
     private String eqpmnLendCl;//캠핑장비대여
-
-
 }
-
-

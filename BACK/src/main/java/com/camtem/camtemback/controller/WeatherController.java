@@ -17,19 +17,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000") // 허용할 출처(origin) 지정
-public class HiController {
+public class WeatherController {
     private final WeatherService weatherService;
 
 
-    public HiController(WeatherService weatherService) {
+    public WeatherController(WeatherService weatherService) {
         this.weatherService = weatherService;
     }
 
-    @GetMapping("/api/hello")
-    public String  Hello(){
-        System.out.println("으어");
-        return "hi";
-    }
 
     @PostMapping("/api/recommend-campsite")
     public ResponseEntity<?> recommendCampsite(@RequestBody WeatherReco request){

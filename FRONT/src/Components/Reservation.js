@@ -124,6 +124,7 @@ function SearchBar() {
       // 사용자가 선택한 도시에 따라 mapX, mapY, radius 정보를 포함합니다.
       const selectedCityInfo = mapCoordinates[searchTerm[0]] || mapCoordinates["서울"]; // 기본값으로 서울 설정
 
+      const cityName = searchTerm[0] || "서울";
       const requestData = {
         region: regionInEnglish,
         dates,
@@ -135,13 +136,13 @@ function SearchBar() {
 
       const [weatherResponse, campResponse] = await Promise.all([
         axios.post("/api/recommend-campsite", requestData),
-        axios.post("/api/productlist", selectedCityInfo),
+        axios.get(`/api/productlist?city=${cityName}`),
       ]);
 
       console.log(campResponse);
 
       dispatch(changeWeatherData(weatherResponse.data.list));
-      dispatch(changeCampingData(campResponse.data.response.body.items.item));
+      dispatch(changeCampingData(campResponse.data));
       navigate("/productlist");
     } catch (error) {
       console.log(error);

@@ -8,13 +8,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 
-
 @Getter
 @Setter
-
 public class Weather {
     private List<DailyWeather> list;
 
+    // Getters, Setters
 
     @Getter
     @Setter
