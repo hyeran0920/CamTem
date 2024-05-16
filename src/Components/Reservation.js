@@ -59,7 +59,6 @@ function SearchBar() {
     충청남도: "Chungcheongnam-do",
     전북: "Jeollabuk-do",
   };
-  
 
   // 날짜 선택 기능
   const [dateRange, setDateRange] = useState({
@@ -81,12 +80,6 @@ function SearchBar() {
     setDateRange({ startDate: start, endDate: end });
   };
 
-  const [data, setData] = useState({
-    region: "",
-    date: "",
-    numPeople: "",
-  });
-
   const handleSearch = async (event) => {
     event.preventDefault();
 
@@ -98,7 +91,6 @@ function SearchBar() {
         window.alert("시작일과 종료일을 선택하세요.");
         return;
       }
-      
 
       // 날짜 범위에서 각 날짜를 배열에 추가
       const dates = [];
@@ -113,8 +105,18 @@ function SearchBar() {
       // 선택한도시이름을 영어로 변환
       const regionInEnglish = cityMap[searchTerm[0]] || "Seoul"; //Seoul은 지역입력 안했을때 기본값
 
-      const cityName = searchTerm[0] || "서울"; // 기본값으로 서울 설정
+      // 서울을 선택했을 때 mapX, mapY, radius 값을 설정합니다.
+      // const mapCoordinates = {
+      //   서울: { mapX: 126.9783882, mapY: 37.5666103, radius: 15000 },
+      //   부산: { mapX: 129.0756416, mapY: 35.1795543, radius: 10000 },
+      //   인천: { mapX: 126.7052062, mapY: 37.4562557, radius: 12000 }, // 예시 좌표 및 반경
+      //   // 다른 도시들에 대한 좌표도 이와 같이 추가할 수 있습니다.
+      // };
 
+      // 사용자가 선택한 도시에 따라 mapX, mapY, radius 정보를 포함합니다.
+      // const selectedCityInfo = mapCoordinates[searchTerm[0]] || mapCoordinates["서울"]; // 기본값으로 서울 설정
+
+      const cityName = searchTerm[0] || "서울";
       const requestData = {
         region: regionInEnglish,
         dates,
@@ -161,11 +163,6 @@ function SearchBar() {
       //이렇게 하면 해당 데이터의 dt를 날짜로 변경가능
     }
   }, [searchTerm, dateRange, numPeople, weatherData]);
-
-
-
-  
-
 
   return (
     <Container>
