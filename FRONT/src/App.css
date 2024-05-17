@@ -5,11 +5,43 @@
 .productList {
   font-family: 'SUITE-Regular';
 }
+  .productdetail {
+    font-family: 'SUITE-Regular';
+  }
+.entire {
+  font-family: 'SUITE-Regular';
+}
 
 .where{
   font-family: 'EliceDigitalBaeum-Bd';
 }
-
+.Container {
+  font-family: 'SUITE-Regular';
+}
+.h1{
+  font-family: 'SUITE-Regular';
+}
+.h2{
+  font-family: 'SUITE-Regular';
+}
+.h3{
+  font-family: 'SUITE-Regular';
+}
+.h4{
+  font-family: 'SUITE-Regular';
+}
+.h5{
+  font-family: 'SUITE-Regular';
+}
+.h6{
+  font-family: 'SUITE-Regular';
+}
+.div{
+  font-family: 'SUITE-Regular';
+}
+.body {
+  font-family: 'SUITE-Regular';
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

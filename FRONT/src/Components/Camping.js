@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import defaultImage from "../images/image44.png";
 
 
-function Camping({ camping }) {
+function Camping({ camping, onNavigate }) {
 
   let navigate = useNavigate();
 
@@ -64,7 +64,7 @@ function Camping({ camping }) {
             </div>
 
             <br />
-            <button style={buttonStyle} onClick={() => navigate(`/ProductDetail/${camping.contentId}`)} >
+            <button style={buttonStyle} onClick={onNavigate} >
               자세히 보기
             </button>
           </div>
