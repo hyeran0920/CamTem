@@ -47,7 +47,27 @@ const StyledSlider = styled(Slider)`
   }
 
   .slick-slide {
-    padding: 0 20px;
+    padding: 0 10px;
+  }
+  .slick-list {
+    margin: 0 auto; /* 가운데 정렬 */
+    width: 60%; /* 슬라이더 너비 설정 */
+  }
+
+  .slick-slider {
+    margin: 0 auto; /* 가운데 정렬 */
+  }
+
+  .carouselItem {
+    overflow: hidden;
+    border: none;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* 카드를 가운데 정렬 */
+  }
+
+  .carouselImg {
+    border-radius: 0.75rem 0.75rem 0 0;
   }
 `;
 
@@ -75,7 +95,7 @@ function CaravanRecommendation({ campingData, onNavigate }) {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 2,
         autoplay: true,
         autoplaySpeed: 4000,
@@ -84,21 +104,22 @@ function CaravanRecommendation({ campingData, onNavigate }) {
     };
 
     return (
-        <div style={{ textAlign: 'center', margin: '20px' }}>
-            <Container className="carousel">
-                <h4>오늘 같은 날씨에는 카라반을 추천합니다!</h4>
-                <p>비 오는 날이나 흐린 날에는 카라반에서 편안하게 캠핑을 즐겨보세요.</p>
+        <div style={{ textAlign: 'center', margin: "20px" }}>
+            {/* <hr style={{width:"90%", margin: "0 auto"}} /> */}
+            <Container className="carousel" >
+                <h5 style={{textAlign:"center", marginLeft:"2%", fontWeight:"bold"}}>비 오는 날이나 흐린 날에는 여기서 편하게 캠핑을 즐겨보세요.</h5>
+                <br />
                 {campingData.length > 0 ? (
                     <StyledSlider {...settings}>
                         {campingData.map((camping, index) => (
-                            <div key={index}>
-                                <Card style={{ margin: '10px', border: "none", borderRadius: "0" }}>
-                                    <Card.Img variant="top" src={camping.firstImageUrl ? camping.firstImageUrl : defaultImage} style={{ height:'300px', objectFit: 'cover' }}alt="캠핑장 사진입니다." />
+                            <div key={index} onClick={() => onNavigate(camping)}>
+                                <Card style={{ border: "none", width: "80%", margin: "0 auto" }}>
+                                    <Card.Img variant="top" src={camping.firstImageUrl ? camping.firstImageUrl : defaultImage} style={{ height:"50%", objectFit: "cover", borderRadius:"0" }} alt="캠핑장 사진입니다." />
                                     <Card.Body>
-                                        <Card.Title>{camping.facltNm}</Card.Title>
-                                        <Button variant="primary" onClick={() => onNavigate(camping)}>
+                                        <Card.Title style={{fontSize:"0.85rem", textAlign:"center", fontWeight:"bold"}}>{camping.facltNm}</Card.Title>
+                                        {/* <Button variant="primary" onClick={() => onNavigate(camping)}>
                                             자세히 보기
-                                        </Button>
+                                        </Button> */}
                                     </Card.Body>
                                 </Card>
                             </div>
@@ -108,6 +129,8 @@ function CaravanRecommendation({ campingData, onNavigate }) {
                     <p>데이터가 없습니다.</p>
                 )}
             </Container>
+            <br />
+            {/* <hr style={{width:"90%", margin: "0 auto"}} /> */}
         </div>
     );
 }
