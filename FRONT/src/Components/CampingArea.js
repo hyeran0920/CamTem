@@ -9,7 +9,6 @@ import axios from "axios";
 import { Button, Container } from "react-bootstrap";
 import defaultImage from "../images/image44.png";
 
-
 //CampingArea 캠핑카드 - 캐러셀 구현
 function CampingArea(props) {
     const [kk, setKk] = useState(null);
