@@ -36,10 +36,6 @@ const StyledSlider = styled(Slider)`
     width: 100%;
   }
 
-  .carouselImg {
-    border-radius: 0.75rem 0.75rem 0 0;
-  }
-
   .slick-prev::before,
   .slick-next::before {
     opacity: 0;
@@ -47,11 +43,25 @@ const StyledSlider = styled(Slider)`
   }
 
   .slick-slide {
-    padding: 0 10px;
+    padding: 0 15px; /* 카드 간 간격을 넓히기 */
   }
+
   .slick-list {
     margin: 0 auto; /* 가운데 정렬 */
-    width: 60%; /* 슬라이더 너비 설정 */
+    width: 80%; /* 슬라이더 너비 설정 */
+
+    @media (max-width: 1200px) {
+      width: 90%;
+    }
+
+    @media (max-width: 768px) {
+      width: 95%;
+    }
+
+    @media (max-width: 576px) {
+      width: 100%;
+      padding: 0 5px;
+    }
   }
 
   .slick-slider {
@@ -70,6 +80,48 @@ const StyledSlider = styled(Slider)`
     border-radius: 0.75rem 0.75rem 0 0;
   }
 `;
+
+// const StyledSlider = styled(Slider)`
+//   .carouselItem {
+//     overflow: hidden;
+//     border: none;
+//     width: 100%;
+//   }
+
+//   .carouselImg {
+//     border-radius: 0.75rem 0.75rem 0 0;
+//   }
+
+//   .slick-prev::before,
+//   .slick-next::before {
+//     opacity: 0;
+//     display: none;
+//   }
+
+//   .slick-slide {
+//     padding: 0 10px; /* 카드 간 간격을 넓히기 */
+//   }
+//   .slick-list {
+//     margin: 0 auto; /* 가운데 정렬 */
+//     width: 60%; /* 슬라이더 너비 설정 */
+//   }
+
+//   .slick-slider {
+//     margin: 0 auto; /* 가운데 정렬 */
+//   }
+
+//   .carouselItem {
+//     overflow: hidden;
+//     border: none;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center; /* 카드를 가운데 정렬 */
+//   }
+
+//   .carouselImg {
+//     border-radius: 0.75rem 0.75rem 0 0;
+//   }
+// `;
 
 function CaravanRecommendation({ campingData, onNavigate }) {
     function PrevArrow(props) {

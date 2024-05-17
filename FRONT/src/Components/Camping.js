@@ -30,7 +30,7 @@ function Camping({ camping, onNavigate }) {
 
   return (
     <div className="캠핑장 목록">
-      <div className="list" style={{ position: 'relative', marginTop:'-0.18%' }}>
+      <div className="list" style={{ position: 'relative'}}>
         <img src={camping.firstImageUrl ? camping.firstImageUrl : defaultImage} style={{ width: "600px" }} />
         <div className="infomation">
           <h1>{camping.facltNm}</h1>
