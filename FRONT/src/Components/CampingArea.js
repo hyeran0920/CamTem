@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import axios from "axios";
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import defaultImage from "../images/image44.png";
 
 //CampingArea 캠핑카드 - 캐러셀 구현
