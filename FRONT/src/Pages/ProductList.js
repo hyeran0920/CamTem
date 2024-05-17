@@ -24,15 +24,23 @@ function ProductList() {
   const filterCaravanCampings = (campingData) => {
     return campingData.filter(camping => camping.induty.includes("카라반"));
   };
-  
+
+  console.log("야 카라반 캠핑장 데이터 불러오냐고~~~" + campingData)
+
   // 얘는 카라반만 나오는거
   // const filterCaravanCampings = (campingData) => {
   //   return campingData.filter(camping => camping.induty === "카라반");
   // };
 
+  //날씨 데이터에 따라 카라반 캠핑장을 추천할지말지 결정함
   const recommendCaravan = shouldRecommendCaravan(weatherData);
-  const caravanCampings = filterCaravanCampings(campingData);
+  console.log("날씨!" + recommendCaravan);
 
+  //필터링 된 카라반 캠핑장 목록을 가져온다.
+  const caravanCampings = filterCaravanCampings(campingData);
+  console.log("카라반!" + caravanCampings);
+
+  //상세페이지로 이동
   const handleNavigate = (camping) => {
     navigate(`/ProductDetail/${camping.contentId}`, { state: { camping } });
   };
@@ -53,6 +61,7 @@ function ProductList() {
             ))}
           </Row>
           <br />
+          {/* 날씨에 따라 카라반 캠핑장을 추천하는 컴포넌트 렌더링 */}
           {recommendCaravan && (
             <CaravanRecommendation campingData={caravanCampings} onNavigate={handleNavigate} />
           )}
