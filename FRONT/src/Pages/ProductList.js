@@ -51,7 +51,7 @@ function ProductList() {
         <TopNav bg="dark" theme="dark" />
         <div>
           <br />
-          <div style={{ width: "70%", margin: "10px auto" }}>
+          <div style={{ width: "70%", margin: "10px auto", marginTop:"0" }}>
             <Reservation />
           </div>
           <Row className="justify-content-center">
