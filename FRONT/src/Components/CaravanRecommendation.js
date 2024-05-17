@@ -75,7 +75,7 @@ function CaravanRecommendation({ campingData, onNavigate }) {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 2,
         slidesToScroll: 2,
         autoplay: true,
         autoplaySpeed: 4000,
@@ -84,7 +84,7 @@ function CaravanRecommendation({ campingData, onNavigate }) {
     };
 
     return (
-        <div style={{ textAlign: "center", margin: "20px", height:"15%"}}>
+        <div style={{ textAlign: 'center', margin: '20px' }}>
             <Container className="carousel">
                 <h4>오늘 같은 날씨에는 카라반을 추천합니다!</h4>
                 <p>비 오는 날이나 흐린 날에는 카라반에서 편안하게 캠핑을 즐겨보세요.</p>
@@ -93,8 +93,8 @@ function CaravanRecommendation({ campingData, onNavigate }) {
                         {campingData.map((camping, index) => (
                             <div key={index}>
                                 <Card style={{ margin: '10px', border: "none", borderRadius: "0" }}>
-                                    <Card.Img variant="top" src={camping.firstImageUrl ? camping.firstImageUrl : defaultImage} style={{width:"50%", objectFit: "cover"}} alt="캠핑장 사진입니다." />
-                                    <Card.Body style={{width:"50%"}}>
+                                    <Card.Img variant="top" src={camping.firstImageUrl ? camping.firstImageUrl : defaultImage} style={{ height:'300px', objectFit: 'cover' }}alt="캠핑장 사진입니다." />
+                                    <Card.Body>
                                         <Card.Title>{camping.facltNm}</Card.Title>
                                         <Button variant="primary" onClick={() => onNavigate(camping)}>
                                             자세히 보기
