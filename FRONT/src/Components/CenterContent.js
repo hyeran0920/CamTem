@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Container, Form } from "react-bootstrap";
 import Reservation from "../Components/Reservation";
+import "../css/CenterContent.css";
 
 function CenterContent() {
   const [kk, setKk] = useState(null);
@@ -9,16 +10,11 @@ function CenterContent() {
   }, [kk]);
 
   return (
-    <Container
-      fluid
-      className="mt-5 p-3"
-      style={{ width: "70%", backgroundColor: "rgba(255, 255, 255, 0.2)", borderRadius: "20px" }}
-    >
+    <Container fluid className="bgContainer mt-5 p-3" >
       <Form>
-      <h5 className="text-start ps-3" style={{ marginBottom: "10px", color: "#fff", fontWeight: "bold" }}>
-  여행지 검색하기
-</h5>
-
+        <h5 className="subTitle text-start ps-3">
+          여행지 검색하기
+        </h5>
         <Reservation />
       </Form>
     </Container>

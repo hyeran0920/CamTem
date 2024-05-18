@@ -81,47 +81,6 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-// const StyledSlider = styled(Slider)`
-//   .carouselItem {
-//     overflow: hidden;
-//     border: none;
-//     width: 100%;
-//   }
-
-//   .carouselImg {
-//     border-radius: 0.75rem 0.75rem 0 0;
-//   }
-
-//   .slick-prev::before,
-//   .slick-next::before {
-//     opacity: 0;
-//     display: none;
-//   }
-
-//   .slick-slide {
-//     padding: 0 10px; /* 카드 간 간격을 넓히기 */
-//   }
-//   .slick-list {
-//     margin: 0 auto; /* 가운데 정렬 */
-//     width: 60%; /* 슬라이더 너비 설정 */
-//   }
-
-//   .slick-slider {
-//     margin: 0 auto; /* 가운데 정렬 */
-//   }
-
-//   .carouselItem {
-//     overflow: hidden;
-//     border: none;
-//     width: 100%;
-//     display: flex;
-//     justify-content: center; /* 카드를 가운데 정렬 */
-//   }
-
-//   .carouselImg {
-//     border-radius: 0.75rem 0.75rem 0 0;
-//   }
-// `;
 
 function CaravanRecommendation({ campingData, onNavigate }) {
     function PrevArrow(props) {
@@ -188,6 +147,49 @@ function CaravanRecommendation({ campingData, onNavigate }) {
 }
 
 export default CaravanRecommendation;
+
+// const StyledSlider = styled(Slider)`
+//   .carouselItem {
+//     overflow: hidden;
+//     border: none;
+//     width: 100%;
+//   }
+
+//   .carouselImg {
+//     border-radius: 0.75rem 0.75rem 0 0;
+//   }
+
+//   .slick-prev::before,
+//   .slick-next::before {
+//     opacity: 0;
+//     display: none;
+//   }
+
+//   .slick-slide {
+//     padding: 0 10px; /* 카드 간 간격을 넓히기 */
+//   }
+//   .slick-list {
+//     margin: 0 auto; /* 가운데 정렬 */
+//     width: 60%; /* 슬라이더 너비 설정 */
+//   }
+
+//   .slick-slider {
+//     margin: 0 auto; /* 가운데 정렬 */
+//   }
+
+//   .carouselItem {
+//     overflow: hidden;
+//     border: none;
+//     width: 100%;
+//     display: flex;
+//     justify-content: center; /* 카드를 가운데 정렬 */
+//   }
+
+//   .carouselImg {
+//     border-radius: 0.75rem 0.75rem 0 0;
+//   }
+// `;
+
 
 // 이 코드로 작성했을 때 안된 이유
 // 1. StyledSlider

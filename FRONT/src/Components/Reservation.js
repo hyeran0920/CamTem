@@ -1,36 +1,25 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { Container } from "react-bootstrap";
-// import { Typeahead } from "react-bootstrap-typeahead";
-// import "react-bootstrap-typeahead/css/Typeahead.css";
-import "react-date-range/dist/styles.css"; // 라이브러리의 기본 스타일 추가
+import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-// 달력용
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Reservation.css";
-
-//people
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-
-//react-redux사용에 필요한 import
 import { useSelector, useDispatch } from "react-redux";
 import { changeWeatherData, changeCampingData } from "../store";
 
 function SearchBar() {
   const navigate = useNavigate();
-  // redux에 만든 state 가져오기
   const weatherData = useSelector((state) => state.weatherData);
   const dispatch = useDispatch();
-  // 자동 완성 기능
   const [selectedCity, setSelectedCity] = useState(null);
 
   const suggestions = [
-
     { value: "서울", label: "서울" },
     { value: "부산", label: "부산" },
     { value: "인천", label: "인천" },
@@ -48,9 +37,8 @@ function SearchBar() {
     { value: "경상북도", label: "경상북도" },
     { value: "경상남도", label: "경상남도" },
     { value: "제주", label: "제주" },
-
   ];
-  // 도시 이름을 영어로 매핑하는 객체
+
   const cityMap = {
     서울: "Seoul",
     부산: "Busan",
@@ -68,15 +56,14 @@ function SearchBar() {
     전라남도: "Jeollanam-do",
     경상남도: "Gyeongsangnam-do",
     경상북도: "Gyeongsangbuk-do",
-    제주: "Jeju"
+    제주: "Jeju",
   };
 
-  // 날짜 선택 기능
   const [dateRange, setDateRange] = useState({
     startDate: new Date(),
     endDate: null,
   });
-  //인원수
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [numPeople, setNumPeople] = useState(2);
 
@@ -103,44 +90,24 @@ function SearchBar() {
         return;
       }
 
-      // 날짜 범위에서 각 날짜를 배열에 추가
       const dates = [];
       let currentDate = new Date(startDate);
-      endDate.setHours(23, 59, 59, 999); // endDate를 하루의 마지막 시간으로 설정합니다.
+      endDate.setHours(23, 59, 59, 999);
 
       while (currentDate <= endDate) {
         dates.push(toLocalDateString(currentDate));
         currentDate.setDate(currentDate.getDate() + 1);
       }
 
-      // 선택한도시이름을 영어로 변환
       const regionInEnglish = cityMap[selectedCity.value] || "Seoul";
- //Seoul은 지역입력 안했을때 기본값
-
-      // 서울을 선택했을 때 mapX, mapY, radius 값을 설정합니다.
-      // const mapCoordinates = {
-      //   서울: { mapX: 126.9783882, mapY: 37.5666103, radius: 15000 },
-      //   부산: { mapX: 129.0756416, mapY: 35.1795543, radius: 10000 },
-      //   인천: { mapX: 126.7052062, mapY: 37.4562557, radius: 12000 }, // 예시 좌표 및 반경
-      //   // 다른 도시들에 대한 좌표도 이와 같이 추가할 수 있습니다.
-      // };
-
-      // 사용자가 선택한 도시에 따라 mapX, mapY, radius 정보를 포함합니다.
-      // const selectedCityInfo = mapCoordinates[searchTerm[0]] || mapCoordinates["서울"]; // 기본값으로 서울 설정
-
       const cityName = selectedCity.value || "서울";
 
       const requestData = { region: regionInEnglish, dates, numPeople };
-
-      console.log(requestData);
-      console.log(cityName);
 
       const [weatherResponse, campResponse] = await Promise.all([
         axios.post("/api/recommend-campsite", requestData),
         axios.get(`/api/productlist?city=${cityName}`),
       ]);
-
-      console.log(campResponse.data);
 
       dispatch(changeWeatherData(weatherResponse.data.list));
       dispatch(changeCampingData(campResponse.data));
@@ -156,39 +123,62 @@ function SearchBar() {
     return adjustedDate.toISOString().split("T")[0];
   }
 
+  useEffect(() => {}, [dateRange, numPeople, weatherData]);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  
   useEffect(() => {
-    //여기에 밑의 배열에 들어있는 searchTerm, dateRange, numPeople, weatherData
-    //4가지 state들이 변경되거나 처음 등록될때 실행할 코드 작성하기
-    if (weatherData.length > 0) {
-      // console.log(weatherData);
-      // console.log("-----------");
-      // console.log(dateRange.startDate);
-      // console.log(dateRange.endDate);
-      // const dt = 1714705200;
-      // const date = new Date(dt * 1000);
-      // console.log(date);
-      // console.log(weatherData);
-      // console.log("-----------");
-      //이렇게 하면 해당 데이터의 dt를 날짜로 변경가능
-    }
-  }, [dateRange, numPeople, weatherData]);
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        setWindowWidth(entry.contentRect.width);
+      }
+    });
+    resizeObserver.observe(document.documentElement);
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  const isMobile = windowWidth <= 768;
 
   return (
     <Container>
-      <div id="reservation" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
-        <div style={{ width: "30%" }}>
+      <div
+        id="reservation"
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          justifyContent: isMobile ? "center" : "flex-start",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "1rem",
+          fontSize: "1rem",
+          height: "100%"
+        }}
+      >
+        <div style={{ width: isMobile ? "80%" : "30%" }}>
           <Select
-
-        id="search-term"
-        placeholder="지역을 선택하세요"
-        options={suggestions}
-        value={selectedCity}
-        onChange={setSelectedCity}
-        styles={{ container: (base) => ({ ...base, flex: 1 }) }}
-
-        />
+            id="search-term"
+            placeholder={isMobile ? "가고 싶은 곳" : "지역을 선택하세요"}
+            options={suggestions}
+            value={selectedCity}
+            onChange={setSelectedCity}
+            styles={{
+              container: (base) => ({
+                ...base,
+                flex: 1,
+              }),
+              input: (base) => ({
+                ...base,
+                fontSize: "1rem",
+              }),
+              placeholder: (base) => ({
+                ...base,
+                fontSize: "1rem",
+              }),
+            }}
+          />
         </div>
-        <div style={{ width: "40%", display: "flex", justifyContent: "flex-start", margin: "0" }}>
+        <div style={{ width: isMobile ? "80%" : "40%", display: "flex", justifyContent: "flex-start", marginLeft: isMobile ?"-10%" :"auto" }}>
           <DatePicker
             selectsRange={true}
             className="datepicker"
@@ -198,43 +188,59 @@ function SearchBar() {
             endDate={dateRange.endDate}
             minDate={new Date()}
             onChange={handleDateChange}
+            style={{ fontSize: "1rem" }}
           />
         </div>
-        <div id="people" style={{ flex: 1, width: "20%", border: "1px solid #DEE2E6 ", height: "35px", padding: "0" }}>
-          <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+        <div
+          id="people"
+          style={{
+            flex: 1,
+            width: isMobile ? "80%" : "20%",
+            border: "0.1rem solid #DEE2E6",
+            height: "2.2rem",
+            padding: "0",
+            display: isMobile ? "none" : "flex", // 모바일 화면에서는 보이지 않도록 설정
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+         <Dropdown isOpen={!isMobile && dropdownOpen} toggle={toggleDropdown}>
             <DropdownToggle
               style={{
                 border: "none",
                 background: "none",
-                color: "inherit", // 글씨색 inherit
-                paddingTop: "5px",
+                color: "inherit",
+                paddingTop: "0.3rem",
                 cursor: "pointer",
+                fontSize: "1rem",
               }}
             >
-              인원수 {numPeople}
+              {numPeople} 명
             </DropdownToggle>
             <DropdownMenu
               style={{
-                display: dropdownOpen ? "flex" : "none",
+                display: !isMobile && dropdownOpen ? "flex" : "none", // 모바일 화면에서는 보이지 않도록 설정
                 padding: "0",
                 width: "100%",
-                borderRadius: "5px",
+                borderRadius: "0.3rem",
                 overflow: "hidden",
               }}
             >
               <DropdownItem
                 onClick={() => handlePeopleChange(-1)}
                 style={{
-                  paddingLeft: "20px",
+                  paddingLeft: "1.2rem",
                   backgroundColor: "transparent",
+                  fontSize: "1rem",
                 }}
               >
                 -
               </DropdownItem>
               <DropdownItem
                 style={{
-                  padding: "10px",
+                  padding: "0.6rem",
                   backgroundColor: "transparent",
+                  fontSize: "1rem",
                 }}
               >
                 {numPeople}
@@ -242,8 +248,9 @@ function SearchBar() {
               <DropdownItem
                 onClick={() => handlePeopleChange(1)}
                 style={{
-                  padding: "10px",
+                  padding: "0.6rem",
                   backgroundColor: "transparent",
+                  fontSize: "1rem",
                 }}
               >
                 +
@@ -251,10 +258,22 @@ function SearchBar() {
             </DropdownMenu>
           </Dropdown>
         </div>
-        <div style={{ flex: 1, width: "10%" }}>
-          <button id="placesearch" onClick={handleSearch}>
-            검색하기
-          </button>
+        <div style={{ flex: 1, width: isMobile ? "80%" : "10%" }}>
+         <button
+            id="placesearch"
+            onClick={handleSearch}
+            style={{
+              width: "100%",
+              padding: "0.5rem",
+              fontSize: "1rem",
+              color: "white",
+              border: "none",
+              borderRadius: "0.3rem",
+              cursor: "pointer",
+            }}
+          >
+            검색
+            </button>
         </div>
       </div>
     </Container>
@@ -262,6 +281,270 @@ function SearchBar() {
 }
 
 export default SearchBar;
+// import React, { useState, useEffect } from "react";
+// import Select from "react-select";
+// import { Container } from "react-bootstrap";
+// // import { Typeahead } from "react-bootstrap-typeahead";
+// // import "react-bootstrap-typeahead/css/Typeahead.css";
+// import "react-date-range/dist/styles.css"; // 라이브러리의 기본 스타일 추가
+// import "react-date-range/dist/theme/default.css";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+
+// // 달력용
+// import DatePicker from "react-datepicker";
+// import { ko } from "date-fns/locale";
+// import "react-datepicker/dist/react-datepicker.css";
+// import "../Reservation.css";
+
+// //people
+// import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+
+// //react-redux사용에 필요한 import
+// import { useSelector, useDispatch } from "react-redux";
+// import { changeWeatherData, changeCampingData } from "../store";
+
+// function SearchBar() {
+//   const navigate = useNavigate();
+//   // redux에 만든 state 가져오기
+//   const weatherData = useSelector((state) => state.weatherData);
+//   const dispatch = useDispatch();
+//   // 자동 완성 기능
+//   const [selectedCity, setSelectedCity] = useState(null);
+
+//   const suggestions = [
+
+//     { value: "서울", label: "서울" },
+//     { value: "부산", label: "부산" },
+//     { value: "인천", label: "인천" },
+//     { value: "대구", label: "대구" },
+//     { value: "광주", label: "광주" },
+//     { value: "대전", label: "대전" },
+//     { value: "울산", label: "울산" },
+//     { value: "세종", label: "세종" },
+//     { value: "경기도", label: "경기도" },
+//     { value: "강원도", label: "강원도" },
+//     { value: "충청북도", label: "충청북도" },
+//     { value: "충청남도", label: "충청남도" },
+//     { value: "전라북도", label: "전라북도" },
+//     { value: "전라남도", label: "전라남도" },
+//     { value: "경상북도", label: "경상북도" },
+//     { value: "경상남도", label: "경상남도" },
+//     { value: "제주", label: "제주" },
+
+//   ];
+//   // 도시 이름을 영어로 매핑하는 객체
+//   const cityMap = {
+//     서울: "Seoul",
+//     부산: "Busan",
+//     인천: "Incheon",
+//     대구: "Daegu",
+//     광주: "Gwangju",
+//     대전: "Daejeon",
+//     울산: "Ulsan",
+//     세종: "Sejong",
+//     경기: "Gyeonggi",
+//     강원: "Gangwon",
+//     충청북도: "Chungcheongbuk-do",
+//     충청남도: "Chungcheongnam-do",
+//     전라북도: "Jeollabuk-do",
+//     전라남도: "Jeollanam-do",
+//     경상남도: "Gyeongsangnam-do",
+//     경상북도: "Gyeongsangbuk-do",
+//     제주: "Jeju"
+//   };
+
+//   // 날짜 선택 기능
+//   const [dateRange, setDateRange] = useState({
+//     startDate: new Date(),
+//     endDate: null,
+//   });
+//   //인원수
+//   const [dropdownOpen, setDropdownOpen] = useState(false);
+//   const [numPeople, setNumPeople] = useState(2);
+
+//   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+
+//   const handlePeopleChange = (change) => {
+//     setNumPeople((prevNumPeople) => Math.max(prevNumPeople + change, 0));
+//   };
+
+//   const handleDateChange = (dates) => {
+//     const [start, end] = dates;
+//     setDateRange({ startDate: start, endDate: end });
+//   };
+
+//   const handleSearch = async (event) => {
+//     event.preventDefault();
+
+//     try {
+//       const startDate = dateRange.startDate;
+//       const endDate = dateRange.endDate;
+
+//       if (!startDate || !endDate) {
+//         window.alert("시작일과 종료일을 선택하세요.");
+//         return;
+//       }
+
+//       // 날짜 범위에서 각 날짜를 배열에 추가
+//       const dates = [];
+//       let currentDate = new Date(startDate);
+//       endDate.setHours(23, 59, 59, 999); // endDate를 하루의 마지막 시간으로 설정합니다.
+
+//       while (currentDate <= endDate) {
+//         dates.push(toLocalDateString(currentDate));
+//         currentDate.setDate(currentDate.getDate() + 1);
+//       }
+
+//       // 선택한도시이름을 영어로 변환
+//       const regionInEnglish = cityMap[selectedCity.value] || "Seoul";
+//       //Seoul은 지역입력 안했을때 기본값
+
+//       // 서울을 선택했을 때 mapX, mapY, radius 값을 설정합니다.
+//       // const mapCoordinates = {
+//       //   서울: { mapX: 126.9783882, mapY: 37.5666103, radius: 15000 },
+//       //   부산: { mapX: 129.0756416, mapY: 35.1795543, radius: 10000 },
+//       //   인천: { mapX: 126.7052062, mapY: 37.4562557, radius: 12000 }, // 예시 좌표 및 반경
+//       //   // 다른 도시들에 대한 좌표도 이와 같이 추가할 수 있습니다.
+//       // };
+
+//       // 사용자가 선택한 도시에 따라 mapX, mapY, radius 정보를 포함합니다.
+//       // const selectedCityInfo = mapCoordinates[searchTerm[0]] || mapCoordinates["서울"]; // 기본값으로 서울 설정
+
+//       const cityName = selectedCity.value || "서울";
+
+//       const requestData = { region: regionInEnglish, dates, numPeople };
+
+//       console.log(requestData);
+//       console.log(cityName);
+
+//       const [weatherResponse, campResponse] = await Promise.all([
+//         axios.post("/api/recommend-campsite", requestData),
+//         axios.get(`/api/productlist?city=${cityName}`),
+//       ]);
+
+//       console.log(campResponse.data);
+
+//       dispatch(changeWeatherData(weatherResponse.data.list));
+//       dispatch(changeCampingData(campResponse.data));
+//       navigate("/productlist");
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   function toLocalDateString(date) {
+//     const offset = date.getTimezoneOffset();
+//     const adjustedDate = new Date(date.getTime() - offset * 60 * 1000);
+//     return adjustedDate.toISOString().split("T")[0];
+//   }
+
+//   useEffect(() => {
+//     //여기에 밑의 배열에 들어있는 searchTerm, dateRange, numPeople, weatherData
+//     //4가지 state들이 변경되거나 처음 등록될때 실행할 코드 작성하기
+//     if (weatherData.length > 0) {
+//       // console.log(weatherData);
+//       // console.log("-----------");
+//       // console.log(dateRange.startDate);
+//       // console.log(dateRange.endDate);
+//       // const dt = 1714705200;
+//       // const date = new Date(dt * 1000);
+//       // console.log(date);
+//       // console.log(weatherData);
+//       // console.log("-----------");
+//       //이렇게 하면 해당 데이터의 dt를 날짜로 변경가능
+//     }
+//   }, [dateRange, numPeople, weatherData]);
+
+//   return (
+//     <Container>
+//       <div id="reservation" style={{ display: "flex", justifyContent: "flex-start", alignItems: "center" }}>
+//         <div style={{ width: "30%" }}>
+//           <Select
+
+//             id="search-term"
+//             placeholder="지역을 선택하세요"
+//             options={suggestions}
+//             value={selectedCity}
+//             onChange={setSelectedCity}
+//             styles={{ container: (base) => ({ ...base, flex: 1 }) }}
+
+//           />
+//         </div>
+//         <div style={{ width: "40%", display: "flex", justifyContent: "flex-start", margin: "0" }}>
+//           <DatePicker
+//             selectsRange={true}
+//             className="datepicker"
+//             locale={ko}
+//             dateFormat="yyyy년 MM월 dd일"
+//             startDate={dateRange.startDate}
+//             endDate={dateRange.endDate}
+//             minDate={new Date()}
+//             onChange={handleDateChange}
+//           />
+//         </div>
+//         <div id="people" style={{ flex: 1, width: "20%", border: "1px solid #DEE2E6 ", height: "35px", padding: "0" }}>
+//           <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+//             <DropdownToggle
+//               style={{
+//                 border: "none",
+//                 background: "none",
+//                 color: "inherit", // 글씨색 inherit
+//                 paddingTop: "5px",
+//                 cursor: "pointer",
+//               }}
+//             >
+//               인원수 {numPeople}
+//             </DropdownToggle>
+//             <DropdownMenu
+//               style={{
+//                 display: dropdownOpen ? "flex" : "none",
+//                 padding: "0",
+//                 width: "100%",
+//                 borderRadius: "5px",
+//                 overflow: "hidden",
+//               }}
+//             >
+//               <DropdownItem
+//                 onClick={() => handlePeopleChange(-1)}
+//                 style={{
+//                   paddingLeft: "20px",
+//                   backgroundColor: "transparent",
+//                 }}
+//               >
+//                 -
+//               </DropdownItem>
+//               <DropdownItem
+//                 style={{
+//                   padding: "10px",
+//                   backgroundColor: "transparent",
+//                 }}
+//               >
+//                 {numPeople}
+//               </DropdownItem>
+//               <DropdownItem
+//                 onClick={() => handlePeopleChange(1)}
+//                 style={{
+//                   padding: "10px",
+//                   backgroundColor: "transparent",
+//                 }}
+//               >
+//                 +
+//               </DropdownItem>
+//             </DropdownMenu>
+//           </Dropdown>
+//         </div>
+//         <div style={{ flex: 1, width: "10%" }}>
+//           <button id="placesearch" onClick={handleSearch}>
+//             검색하기
+//           </button>
+//         </div>
+//       </div>
+//     </Container>
+//   );
+// }
+
+// export default SearchBar;
 // import React, { useState, useRef, useEffect } from "react";
 // import { Container, Row, Col } from "react-bootstrap";
 // import { Typeahead } from "react-bootstrap-typeahead";
