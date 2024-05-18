@@ -8,6 +8,7 @@ import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 import defaultImage from "../images/image44.png";
+import "../css/CampingArea.css";
 
 //CampingArea 캠핑카드 - 캐러셀 구현
 function CampingArea(props) {

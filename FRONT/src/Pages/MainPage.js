@@ -44,19 +44,18 @@ function MainPage() {
         <CircleButton location={location} handleLocationChange={handleLocationChange} />
       </Container>
 
-      <Container id="date-section" fluid style={{ width: "100%" }} >
+      <Container id="date-section" fluid >
         <br />
-        <h1 style={{ fontWeight: "bold" }}>{location} 추천 캠핑장</h1>
+        <h1>{location} 추천 캠핑장</h1>
         <br />
         <br />
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="secondContent">
           {/* 왼쪽 세션 */}
-          <div style={{ width: "50%", paddingRight: "10px", paddingTop: "90px" }}>
+          <div className="leftContainer">
             <CampingArea location={location} handleLocationChange={handleLocationChange} />
           </div>
-
           {/* 오른쪽 세션 */}
-          <div style={{ width: "35%", marginLeft: "100px" }}>
+          <div className="rightContainer">
             <Koreamap location={location} setLocation={setLocation} />
           </div>
         </div>
@@ -64,7 +63,7 @@ function MainPage() {
         <br />
         <br />
       </Container>
-      
+
       <Footer />
     </div>
   );
