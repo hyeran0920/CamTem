@@ -5,7 +5,7 @@
   padding-top: 30px;
 }
 
-.recommendTitle{
+.recommendTitle {
   color: white;
   font-size: 2rem;
   font-weight: bold;
@@ -37,33 +37,38 @@
 #date-section .rightContainer {
   width: 35%;
   margin-left: 100px;
-} 
+}
 
 @media screen and (max-width: 767px) {
   .where {
-      font-size: 2rem;
+    font-size: 2rem;
   }
 
-  .recommendTitle{
-      font-size: 1.3rem;
-      text-align: center;
-      /* margin-top: 25px; */
+  .recommendTitle {
+    font-size: 1.3rem;
+    text-align: center;
+    /* margin-top: 25px; */
   }
 
   /* 화면이 작을 때 컨테이너의 순서 변경 */
   #date-section .secondContent {
-    flex-direction: column-reverse; /* 순서를 역순으로 변경 */
-}
+    flex-direction: column-reverse;
+    /* 순서를 역순으로 변경 */
+  }
 
-#date-section .leftContainer {
-    width: 100%; /* 두 컨테이너 모두 전체 너비로 설정 */
+  #date-section .leftContainer {
+    width: 100%;
+    /* 두 컨테이너 모두 전체 너비로 설정 */
     padding: 0;
     margin-top: 100px;
     margin-left: -15px;
-}
+  }
 
-#date-section .rightContainer {
-    width: 100%; /* 두 컨테이너 모두 전체 너비로 설정 */
+  #date-section .rightContainer {
+    width: 100%;
+    /* 두 컨테이너 모두 전체 너비로 설정 */
     margin-left: 0;
-}
+  }
+
+
 }
