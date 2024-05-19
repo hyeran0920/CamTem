@@ -1,79 +1,52 @@
-import logo from "../images/logo1.png";
-import "../css/Footer.css";
+import React from 'react';
+import logo from '../images/logo1.png';
+import '../css/Footer.css';
 
 function Footer() {
   return (
     <div className="footer">
+      <br/>
+      <br/>
       <div className="footer-left">
         <p>
-          이용약관 | 개인정보처리방침
+          중앙 정보 기술 인재 개발원
           <br />
-          고객센터
+          (주)CAMTEM
           <br />
-          010-1234-5678
+          팀 : 캠프핑
           <br />
-          근무시간 : 주중 오전11시 ~ 오후 1시
+          날씨, 캠핑장 Open API를 활용한 지역 기반 캠핑장 추천
           <br />
-          점심시간 : 주중 오전12시 ~ 오후 1시
           <br />
-          휴무일 : 주말 및 공휴일
+          팀장 : 서유진 hyeran0920@naver.com
+          <br />
+          팀원 : 박지연 qkrwluds7998@gmail.com, 변의성 qusdml123@gmail.com, 
+          <br />
+          송진원 jinwonsong@naver.com, 유지연yyaong425@gmail.com
         </p>
       </div>
       <div className="footer-right">
         <p>
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" style={{ width: '70px' }} />
           <br />
-          대표자 : 그 누군가 || TEL : 010-112
           <br />
-          E-mail : abcdef@gmail.co.kr
+          <img src="https://blog.kakaocdn.net/dn/SUNA8/btsCP4xUeTw/DTBzxGgaKrkR4Li6kpJ581/img.png" style={{ width: '110px' }} alt="logo1" />
+          <img src="https://upload.wikimedia.org/wikipedia/labs/8/8e/Mysql_logo.png" style={{ width: '60px' }} alt="logo2" />
+          <img src="https://play-lh.googleusercontent.com/pPTTNz433EYFurg2j__bFU5ONdMoU_bs_-yS2JLZriua3iHrksGP6XBPF5VtDPlpGcW4=w600-h300-pc0xffffff-pd" style={{ width: '60px' }} alt="logo3" />
+          <img src="https://blog.kakaocdn.net/dn/bvWwVu/btq7AepYYj4/mUzC7IYWd7WUePQ3VgETpk/img.png" style={{ width: '30px' }} alt="logo4" />
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png" style={{ width: '35px' }} alt="logo5" />
+          <img src="https://velog.velcdn.com/images/handmk/post/8a14410a-085c-4589-9eb3-f8c0a4470b60/image.png" style={{ width: '50px' }} alt="logo6" />
           <br />
-          본사: 지구 그 어딘가
           <br />
-          Copyright © 2024 CamTem CO.LTD. All Rights Reserved
+          GitHub URL: <a href="https://github.com/hyeran0920/CamTem" style={{ color: 'white' }}>https://github.com/hyeran0920/CamTem</a>
+          <br />
+          PPT
+          <br />
+          Youtube
         </p>
       </div>
     </div>
   );
 }
-export default Footer;
 
-// <div
-//   style={{
-//     display: "flex",
-//     width: "100%",
-//     height: "200px",
-//     backgroundColor: "black",
-//     color: "white",
-//     padding: "30px 30px",
-//     marginTop: "20px",
-//   }}
-// >
-//   <div style={{ float: "left", width: "50%", textAlign: "left" }}>
-//     <p>
-//       이용약관 | 개인정보처리방침
-//       <br />
-//       고객센터
-//       <br />
-//       010-1234-5678
-//       <br />
-//       근무시간 : 주중 오전11시 ~ 오후 1시
-//       <br />
-//       점심시간 : 주중 오전12시 ~ 오후 1시
-//       <br />
-//       휴무일 : 주말 및 공휴일
-//     </p>
-//   </div>
-//   <div style={{ float: "left", width: "50%", textAlign: "right" }}>
-//     <p>
-//       <img src={logo} style={{ width: "70px" }} />
-//       <br />
-//       대표자 : 그 누군가 || TEL : 010-112
-//       <br />
-//       E-mail : abcdef@gmail.co.kr
-//       <br />
-//       본사: 지구 그 어딘가
-//       <br />
-//       Copyright © 2024 CamTem CO.LTD. All Rights Reserved
-//     </p>
-//   </div>
-// </div>
+export default Footer;

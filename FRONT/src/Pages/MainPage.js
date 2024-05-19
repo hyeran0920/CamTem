@@ -30,8 +30,7 @@ function MainPage() {
 
       <Container className="bgImage"
         fluid
-        style={{ backgroundImage: "url(" + bgImage + ")", backgroundSize: "cover", width: "100%", height: "100vh" }}
-      >
+        style={{ backgroundImage: "url(" + bgImage + ")", backgroundSize: "cover", width: "100%", height: "100vh" }}>
         <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
           <TopNav bg="transparent" theme="dark" />
         </div>
@@ -45,6 +44,7 @@ function MainPage() {
       </Container>
 
       <Container id="date-section" fluid >
+        <br />
         <br />
         <h1>{location} 추천 캠핑장</h1>
         <br />

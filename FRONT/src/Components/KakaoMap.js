@@ -1,24 +1,24 @@
 /*global kakao */
 import React, { useEffect } from "react";
-
-const KakaoMap = () => {
-
+const KakaoMap = ({ camping }) => {
     useEffect(() => {
-        //map 띄우기
-        var container = document.getElementById('map');
-        var options = {
-            center: new kakao.maps.LatLng(37.365264512305174, 127.10676860117488),
-            level: 3
-        };
-        var map = new kakao.maps.Map(container, options);
+        if (camping) {
+            // map 띄우기
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(camping.mapY, camping.mapX),
+                level: 3
+            };
+            var map = new kakao.maps.Map(container, options);
 
-        //map에 마커 띄우기
-        var markerPosition = new kakao.maps.LatLng(37.365264512305174, 127.10676860117488);
-        var marker = new kakao.maps.Marker({
-            position: markerPosition
-        });
-        marker.setMap(map);
-    }, [])
+            // map에 마커 띄우기
+            var markerPosition = new kakao.maps.LatLng(camping.mapY, camping.mapX);
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+            marker.setMap(map);
+        }
+    }, [camping]); // camping 상태가 변경될 때마다 useEffect가 실행됨
 
 
     return (

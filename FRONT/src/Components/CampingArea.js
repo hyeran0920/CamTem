@@ -6,14 +6,29 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import axios from "axios";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import defaultImage from "../images/image44.png";
-import "../css/CampingArea.css";
+import { useLocation, useNavigate } from 'react-router-dom';
 
-//CampingArea 캠핑카드 - 캐러셀 구현
+
 function CampingArea(props) {
-    const [kk, setKk] = useState(null);
-    console.log(props.location);
+  const [responseData, setResponseData] = useState("서울");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/camping?city=${props.location}`);
+        setResponseData(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [props.location]);
+
+  console.log("response",responseData);
   
 // 커스텀 이전 화살표 컴포넌트
 function PrevArrow(props) {
@@ -70,46 +85,45 @@ const settings = {
     prevArrow: <PrevArrow />, // 이전 화살표 커스텀 컴포넌트 사용
     nextArrow: <NextArrow />, // 다음 화살표 커스텀 컴포넌트 사용
 };
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await axios.get(
-            "http://apis.data.go.kr/B551011/GoCamping/locationBasedList?serviceKey=hbDw%2FtMHLuDxj0DparGpJaydrLr0Qx%2FKrwNhE0wlidNKKDLX0y8Tg%2BsyTPyrhvrRZXCGhyWuLQpneGP%2B5ko%2BBw%3D%3D&MobileOS=ETC&MobileApp=AppTest&mapX=127.3845475&mapY=36.3504119&radius=500000&numOfRows=500&_type=json"
-          );
-          setKk(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-  
-      fetchData();
 
-    }, [props.location]);
-  
-    return (
-      <section className="carouselContainer" style={{ display: "flex", justifyContent: "center", marginLeft: "30px"}}>
-        <Container className="carousel">
-        <StyledSlider {...settings}>
-        {kk && kk.response.body.items.item
-        ? Object.values(kk.response.body.items.item)
-        .filter((item) => item.addr1 && item.addr1.includes(props.location) && item.firstImageUrl !== null)
-          .map((item, index)=>(
-            <div className="carouselItem" key={index}>
-              <div className="carouselImg">
-                <img src={item.firstImageUrl ? item.firstImageUrl : defaultImage } style={{ height:'300px', objectFit: 'cover' }}/>
+
+return (
+  <section className="carouselContainer" style={{ display: "flex", justifyContent: "center", marginLeft: "30px"}}>
+<Container className="carousel">
+<StyledSlider {...settings}>
+{responseData && responseData.length > 0 ? (
+        Object.keys(responseData).map((key, index) => {
+          const item = responseData[key];
+          if (item.addr1 && item.addr1.includes(props.location) && item.firstImageUrl !== null) {
+            return (
+              <div 
+                className="carouselItem" 
+                key={index}  
+                onClick={() => navigate(`/ProductDetail/${item.contentId}`, { state: { camping: item } })}
+              >
+                <div className="carouselImg">
+                  <img 
+                    src={item.firstImageUrl ? item.firstImageUrl : defaultImage} 
+                      style={{ height: '300px', objectFit: 'cover' }} 
+                    alt="캠핑장 이미지"
+                  />
+                </div>
+                <div className="cardText" style={{ padding: "10px" }}>
+                  <p className="facltName" style={{ fontSize: "20px", fontWeight: "bold" }}>{item.facltNm}</p>
+                  <p className="address" style={{ fontSize: "13px" }}>{item.addr1}</p>
+                </div>
               </div>
-              <div className="cardText" style={{ padding: "10px" }}>
-                <p className="facltName" style={{ fontSize: "20px", fontWeight: "bold" }}>{item.facltNm}</p>
-                <p className="address" style={{ fontSize: "13px" }}>{item.addr1}</p>
-              </div>
-              </div>
-          )):(
-            <p>Lodaing...</p>
-          )}
-          </StyledSlider>
-        </Container>
-      </section>
+            );
+          } else {
+            return null; // 조건에 맞지 않는 경우 아이템을 반환하지 않음
+          }
+        })
+      ) : (
+        <p>No data available</p>
+      )}
+      </StyledSlider>
+    </Container>
+  </section>
     );
   }
   const StyledSlider = styled(Slider)`

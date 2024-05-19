@@ -1,7 +1,9 @@
-import { Card, Button, CardText } from "react-bootstrap";
+import React from 'react';
+import { Card } from "react-bootstrap";
 import { TiWeatherSunny } from "react-icons/ti"; //맑은날
 import { TiWeatherDownpour } from "react-icons/ti"; //비
 import { TiWeatherCloudy } from "react-icons/ti"; //구름
+
 function WeatherCard({ weather }) {
   // Unix timestamp를 'yyyy-MM-dd' 형식의 날짜 문자열로 변환하는 함수
   const formatDate = (timestamp) => {
@@ -33,27 +35,25 @@ function WeatherCard({ weather }) {
   const weatherIcon = weatherIcons[weather.weather[0].main];
 
   return (
-<Card className="mb-2 shadow-sm" text="white" style={{ width: "15%", margin: "10px 10px", border: "none", backgroundColor:"#73C2FB" }}>
-  <Card.Body style={{ padding: "5px 3px" }}>
-    <div style={{ fontSize: "18px", fontWeight:"600",textAlign: "center" }}>{formatDate(weather.dt)}</div>
-    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-      {weatherIcon}
-      <div>
-      <span>
-      {Math.floor(weather.temp.min)}/ <span style={{ fontWeight: "bold", color:"#FF5B5B" }}>{Math.floor(weather.temp.max)} °C</span>
-    </span>
-        <br />
-        <span style={{ fontSize: "13px" }}>강수확률: {weather.pop * 100}%</span>
-        {weather.rain && weather.rain["3h"] !== undefined && (
-          <span><br /> 강수량: {weather.rain["3h"]} mm</span>
-        )}
-      </div>
-    </div>
-  </Card.Body>
-</Card>
-
-
-
+    <Card className="mb-2 shadow-sm" text="white" style={{ margin: "10px", border: "none", backgroundColor:"#73C2FB", width: "100%" }}>
+      <Card.Body style={{ padding: "5px 3px" }}>
+        <div style={{ fontSize: "18px", fontWeight:"600",textAlign: "center" }}>{formatDate(weather.dt)}</div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          {weatherIcon}
+          <div>
+            <span>
+              {Math.floor(weather.temp.min)}/ <span style={{ fontWeight: "bold", color:"#FF5B5B" }}>{Math.floor(weather.temp.max)} °C</span>
+            </span>
+            <br />
+            <span style={{ fontSize: "13px" }}>강수확률: {weather.pop * 100}%</span>
+            {weather.rain && weather.rain["3h"] !== undefined && (
+              <span><br /> 강수량: {weather.rain["3h"]} mm</span>
+            )}
+          </div>
+        </div>
+      </Card.Body>
+    </Card>
   );
 }
+
 export default WeatherCard;

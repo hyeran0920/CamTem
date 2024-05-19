@@ -1,0 +1,83 @@
+/* .Thumbnail.css */
+.Thumbnail {
+    margin: 1.5625rem 1.5625rem 0 0;
+}
+
+.camping-image {
+    width: 38.125rem;
+    height: 23.125rem;
+}
+
+/* .CampIntro css */
+.CampIntro {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.camping-title {
+    font-weight: bold;
+}
+
+.camping-address {
+    margin-top: 1.875rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 0.625rem;
+}
+
+.camp-button,
+.no-info-button {
+    display: flex;
+    align-items: center;
+    padding: 0.3125rem 0.625rem;
+    border: none;
+}
+
+.camp-button {
+    background-color: #008b8b;
+    color: white;
+}
+
+.no-info-button {
+    background-color: #d3d3d3;
+    color: black;
+}
+
+.button-link {
+    color: white;
+    text-decoration: none;
+}
+
+/* navBar */
+.navBar {
+    background: gray;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.nav-link {
+    color: white;
+    border-radius: 0;
+}
+
+/* .sliderContainer css */
+.slider-container {
+    text-align: center;
+    width: 100%;
+    height: 34.375rem;
+    margin-bottom: 1.875rem;
+    padding: 0;
+  }
+  
+  /* .carousel {
+    얘는 고민 중
+  } */
+  
+  .carousel-item img {
+    width: 34.375rem;
+    margin: 1.5625rem;
+    height: 31.25rem;
+  }
+  

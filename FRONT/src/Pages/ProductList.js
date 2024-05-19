@@ -1,4 +1,4 @@
-import { Container, Row } from "react-bootstrap";
+import { Container,Row, Col } from 'react-bootstrap';
 import TopNav from "../Components/TopNav";
 import WeatherCard from "../Components/WeatherCard";
 import Reservation from "../Components/Reservation";
@@ -13,38 +13,26 @@ function ProductList() {
   const campingData = useSelector((state) => state.campingData);
   const navigate = useNavigate();
 
-  // 날씨 데이터에서 흐림이나 비가 있는지 확인하는 함수
-  const shouldRecommendCaravan = (weatherData) => {
-    return weatherData.some(
-      (weather) => weather.weather[0].main === "Rain" || weather.weather[0].main === "Clouds"
-    );
+  const shouldRenderCaravanRecommendation = () => {
+    // combinedData 배열을 순회하며 하나라도 강수확률이 50% 이상인 경우 true 반환
+    for (const data of combinedData) {
+      if (data.weather.pop > 0.5) {
+        return true;
+      }
+    }
+    return false; // 모든 요소의 강수확률이 50% 미만인 경우 false 반환
   };
 
-  // 카라반 캠핑장을 필터링하는 함수
-  const filterCaravanCampings = (campingData) => {
-    return campingData.filter(camping => camping.induty.includes("카라반"));
-  };
+// 처음 6개의 날씨 데이터만 사용
+const limitedWeatherData = weatherData.slice(0, 6);
 
-  console.log("야 카라반 캠핑장 데이터 불러오냐고~~~" + campingData)
+// 날씨 데이터만 제한하고, 캠핑 데이터는 모두 사용
+const combinedData = limitedWeatherData.map((weather, index) => ({
+  weather,
+  camping: campingData[index], // 이 부분에서는 캠핑 데이터를 제한하지 않습니다.
+}));
 
-  // 얘는 카라반만 나오는거
-  // const filterCaravanCampings = (campingData) => {
-  //   return campingData.filter(camping => camping.induty === "카라반");
-  // };
-
-  //날씨 데이터에 따라 카라반 캠핑장을 추천할지말지 결정함
-  const recommendCaravan = shouldRecommendCaravan(weatherData);
-  console.log("날씨!" + recommendCaravan);
-
-  //필터링 된 카라반 캠핑장 목록을 가져온다.
-  const caravanCampings = filterCaravanCampings(campingData);
-  console.log("카라반!" + caravanCampings);
-
-  //상세페이지로 이동
-  const handleNavigate = (camping) => {
-    navigate(`/ProductDetail/${camping.contentId}`, { state: { camping } });
-  };
-
+    
   return (
     <div className="productList">
       <Container fluid style={{ margin: 0, padding: 0 }}>
@@ -54,19 +42,25 @@ function ProductList() {
           <div style={{ width: "70%", margin: "10px auto", marginTop:"0" }}>
             <Reservation />
           </div>
-          <Row className="justify-content-center">
-            {weatherData.map((weather, index) => (
-              // 각 날씨 데이터에 대해 WeatherCard 렌더링
-              <WeatherCard key={index} weather={weather} />
-            ))}
-          </Row>
+          <div className="d-flex justify-content-center flex-wrap">
+  {combinedData.map((data, index) => (
+    <div key={index} style={{ margin: "10px" }}>
+      <WeatherCard weather={data.weather} />
+    </div>
+  ))}
+</div>
+ {/* 하나라도 강수확률이 50% 이상인 경우에만 카라반 추천을 렌더링합니다. */}
+ {shouldRenderCaravanRecommendation() && <CaravanRecommendation campingData={campingData} onNavigate={navigate}/>}
+
+
           <br />
+          <hr style={{width:"80%", margin:"0 auto"}}/>
           {/* 날씨에 따라 카라반 캠핑장을 추천하는 컴포넌트 렌더링 */}
-          {recommendCaravan && (
+          {/* {recommendCaravan && (
             <CaravanRecommendation campingData={caravanCampings} onNavigate={handleNavigate} />
-          )}
+          )} */}
         </div>
-        <h5 style={{marginLeft:"6.5%", fontWeight:"bold"}}>캠핑장 전체보기</h5>
+        <div style={{width:"90%", margin:"0 auto"}}>
         <br />
         {campingData.map((camping, index) => (
           <Camping
@@ -75,6 +69,7 @@ function ProductList() {
             onNavigate={() => navigate(`/ProductDetail/${camping.contentId}`, { state: { camping } })}
           />
         ))}
+        </div>
       </Container>
       <Footer />
     </div>
@@ -82,65 +77,3 @@ function ProductList() {
 }
 
 export default ProductList;
-
-// import {Container, Row } from "react-bootstrap";
-// import TopNav from "../Components/TopNav";
-// import WeatherCard from "../Components/WeatherCard";
-// import Reservation from "../Components/Reservation";
-// import Footer from "../Components/Footer";
-// import { useSelector } from "react-redux";
-// import Camping from "../Components/Camping";
-// import { createMemoryRouter, useNavigate } from "react-router-dom";
-// import CaravanRecommendation from "../Components/CaravanRecommendation";
-
-// function ProductList() {
-//   const weatherData = useSelector((state) => state.weatherData);
-//   const campingData = useSelector((state) => state.campingData);
-//   const navigate = useNavigate();
-
-//     // 날씨 데이터에서 흐림이나 비가 있는지 확인하는 함수
-//     const shouldRecommendCaravan = (weatherData) => {
-//       return weatherData.some(
-//         (weather) => weather.weather[0].main === "Rain" || weather.weather[0].main === "Clouds"
-//       );
-//     };
-  
-//     const recommendCaravan = shouldRecommendCaravan(weatherData);
-  
-//     const handleNavigate = (camping) => {
-//       navigate(`/ProductDetail/${camping.contentId}`, { state: { camping } });
-//     };
-
-//   return (
-//     <div className="productList">
-//       <Container fluid style={{ margin: 0, padding: 0 }}>
-//         <TopNav bg="dark" theme="dark" />
-//         <div>
-//           <br />
-//           <div style={{ width: "70%", margin: "10px auto" }}>
-//             <Reservation />
-//           </div>
-//           <Row className="justify-content-center">
-//             {weatherData.map((weather, index) => (
-//               // 각 날씨 데이터에 대해 WeatherCard 렌더링
-//               <WeatherCard key={index} weather={weather} />
-//             ))}
-//           </Row>
-//           <br />
-//           {recommendCaravan && (
-//             <CaravanRecommendation campingData={campingData} onNavigate={handleNavigate} />
-//           )}
-//         </div>
-//         {campingData.map((camping, index) => (
-//           <Camping
-//             key={index}
-//             camping={camping}
-//             onNavigate={() => navigate(`/ProductDetail/${camping.contentId}`, { state: { camping } })}
-//           />
-//         ))}
-//       </Container>
-//       <Footer />
-//     </div>
-//   );
-// }
-// export default ProductList;
