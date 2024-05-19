@@ -23,6 +23,8 @@ import { IoStorefrontOutline } from "react-icons/io5";
 
 //반응형 css
 import "../css/ProductDetail.css";
+import "../css/TopNav.css";
+import "../css/Footer.css";
 
 function ProductDetail() {
   // useParams : api에 요청한 url에 접근해서 100109 id를 가져올 수 있다.
@@ -89,12 +91,12 @@ function ProductDetail() {
   const facilities = camping.sbrsCl.split(/[ ,.]+/);
 
   return (
-    <Container fluid style={{ margin: 0, padding: 0, fontFamily: 'SUITE-Regular' }} id="productdetail">
+    <Container fluid style={{ fontFamily: 'SUITE-Regular' }} id="productdetail">
       {/* TopNav */}
       <TopNav bg="dark" theme="dark" />
       {/* 썸네일용 상품 소개 */}
-      <div id="entire" style={{ padding: "0 1.875rem", width: '90%', margin: '0 auto' }}>
-        <div className="firstContainer" style={{ display: "flex", alignItems: "center" }}>
+      <div id="entire">
+        <div className="firstContainer">
           <div className="Thumbnail">
             {/* 사진 : 왼쪽 + margin px로 할 지, %로 할 지... */}
             {/* 높낮이도 정해야 함 */}
@@ -187,7 +189,7 @@ function ProductDetail() {
           </Nav>
           {/* 캠핑장 사진 : 캐러셀 */}
           {/* 아...이거 근데 캠핑장 썸네일 사진만 있으면 이거 못함... */}
-          <div className="slider-container">
+          <div className="slider-container carousel">
             <Carousel fade>
               <Carousel.Item interval={1000}>
                 <img src={item1} alt="First slide" />
@@ -204,71 +206,53 @@ function ProductDetail() {
           <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
             <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <FaBullhorn style={{ marginRight: "0.3125rem" }} />
-            <h4 style={{ margin: "0" }}>캠핑장 소개</h4>
-            <br />
+          <div className="camp-intro-title-container">
+            <FaBullhorn className="camp-intro-title-icon" />
+            <h4 className="camp-intro-title-text">캠핑장 소개</h4>
           </div>
           <br />
 
           {/* 캠핑장 관련 짧은 소개글 + 특징 안내 */}
-          <div
-            className="shortInfo-payment"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              margin: "0 auto",
-              padding: "0 0",
-              width: "90%"
-            }}
-          >
-            <div style={{ display: "flex", width: "80%", margin: "0 auto" }}>
+          <div className="short-info-payment-container">
+            <div className="short-info-content">
               <br />
-              <h6 className="campingShortInfo" style={{ width: "100%", whiteSpace: "pre-wrap", textAlign: "initial", fontSize: "1.125rem" }}>{camping.intro}
+              <h6 className="camping-short-info">
+                {camping.intro}
                 <br />
                 <br />
                 <br />
                 {camping.featureNm}
                 <br />
                 <br />
-
               </h6>
-
-              {/*소개가 null일때 대체되는 문구 생각하기*/}
+              {/* 소개가 null일 때 대체되는 문구 생각하기 */}
             </div>
           </div>
         </div>
+
         {/* 수평선 태그로 닫아주기 */}
         <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
-
-
           <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
         </div>
+
         {/* 캠핑장 주요 시설 */}
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <FaBullhorn style={{ marginRight: "0.3125rem" }} />
-          <h4 style={{ margin: "0" }}>캠핑장 주요시설</h4>
-          <br />
+        <div className="camp-main-facility-header">
+          <FaBullhorn className="facility-header-icon" />
+          <h4 className="facility-header-text">캠핑장 주요시설</h4>
         </div>
         <br />
-        <div id="clickUseInfo" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "18.75rem" }}>
-          <div style={{ backgroundColor: "#f5f5f5", width: "80%", height: "50%", margin: "0 auto", padding: "1.25rem", borderRadius: "0.625rem", textAlign: 'center' }}>
-            {/* 캠핑장 시설 아이콘, npm install react-icons */}
-            <div>
-              {/* 요소들을 순회하면서 해당하는 아이콘을 출력 */}
+        <div className="camp-facility-container" id="clickUseInfo">
+          <div className="facility-wrapper">
+            <div cla>
               {facilities.map((facility, index) => (
-                <div key={index} style={{ display: 'inline-block', marginRight: '1.875rem', verticalAlign: 'top' }}>
-                  <br />
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    {/* 아이콘이 있는 경우에만 출력 */}
+                <div className="facility-icon-container" key={index}>
+                  <div className="facility-content">
                     {iconMap[facility] && (
-                      <div style={{ marginBottom: '0.625rem', fontSize: '1.25rem' }}>
+                      <div className="facility-icon">
                         {React.cloneElement(iconMap[facility], { size: '3.00rem' })}
                       </div>
                     )}
-                    {/* 요소 텍스트 출력 */}
-                    <div style={{ fontSize: '0.9375rem' }}>
+                    <div className="facility-text">
                       {facility}
                     </div>
                   </div>
@@ -277,16 +261,17 @@ function ProductDetail() {
             </div>
           </div>
         </div>
+
+        {/* 수평선 */}
         <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
           <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
         </div>
 
         {/* table css도 변경하기 */}
         <div className="tableEtc">
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div className="other-facility-container">
             <FaBullhorn style={{ marginRight: "0.3125rem" }} />
-            <h4 style={{ margin: "0" }}>캠핑장 기타시설</h4>
-            <br />
+            <h4 className="facility-title">캠핑장 기타시설</h4>
           </div>
           <br />
           <br />
@@ -330,38 +315,40 @@ function ProductDetail() {
               </tr>
             </table>
           </div>
+
           <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
             <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
           </div>
+
           {/* 캠핑장의 위치 : 지도 api + css는 KakaoMap 컴포넌트 안에서 실행하기 */}
-          <div className="mapContainer" id="clickLocationInfo" style={{ textAlign: "center" }}>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <FaCrosshairs style={{ marginRight: "0.3125rem" }} />
-              <h4 style={{ margin: "0" }}>캠핑장 위치</h4>
+          <div className="mapContainer" id="clickLocationInfo">
+            <div className="mapHeader">
+              <FaCrosshairs className="mapHeaderIcon" />
+              <h4 className="mapHeaderText">캠핑장 위치</h4>
               <br />
             </div>
             <br />
-
-            <KakaoMap style={{ margin: "0 auto" }} camping={camping} key={camping.contentId} />
+            <KakaoMap className="kakaoMap" camping={camping} key={camping.contentId} />
             <br />
             <p>{camping.facltNm} 오시는길</p>
             <p>{camping.direction}</p>
           </div>
         </div>
+
         <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
           <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
         </div>
         {/* 공지사항 : 아코디언 */}
         <div id="clickFAQ">
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div className="FAQ" style={{ display: "flex", alignItems: "center" }}>
             <FaQuestion style={{ marginRight: "0.3125rem" }} />
             <h4 style={{ margin: "0" }}>자주 묻는 질문</h4>
             <br />
           </div>
           <br />
 
-          <Accordion defaultActiveKey={["0"]} alwaysOpen style={{ width: "80%", margin: "0 auto" }}>
-            <Accordion.Item eventKey="0" style={{ backgroundColor: "#f2f2f2" }}>
+          <Accordion  defaultActiveKey={["0"]} alwaysOpen style={{ width: "80%", margin: "0 auto" }}>
+            <Accordion.Item eventKey="0" style={{ backgroundColor: "#f2f2f2" }} className="accordion">
               <Accordion.Header>[조회방법] 여러 캠핑장을 검색하는 방법</Accordion.Header>
               <Accordion.Body>
                 저희 CAMTEM에서는 메인 페이지의 검색창에서 13개의 지역별 캠핑장을 조회하실 수 있습니다.
@@ -372,7 +359,7 @@ function ProductDetail() {
                 <br />
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="1">
+            <Accordion.Item eventKey="1" className="accordion">
               <Accordion.Header>[반려견 여부] 반려견 동반 캠핑장 관련 자주하는 질문과 답변 안내</Accordion.Header>
               <Accordion.Body>
                 CAMTEM에서는 반려견과 함께 캠핑장을 이용하고 싶으신 고객님들을 위해 반려견 동반 가능 여부를 체크해 상세
@@ -382,7 +369,7 @@ function ProductDetail() {
                 확인해주시길 바랍니다.
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="2">
+            <Accordion.Item eventKey="2" className="accordion">
               <Accordion.Header>[입실 방법] 가족 구성원 대신 입실에 관하여</Accordion.Header>
               <Accordion.Body>
                 대부분의 캠핑장에서는 직계존비속· 배우자· 형제자매 및 배우자의 부모인 경우 가족관계증명서 증빙시
@@ -404,7 +391,7 @@ function ProductDetail() {
                 ※캠핑장마다 정책이 다르니 반드시 확인하시기 바랍니다.
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="3">
+            <Accordion.Item eventKey="3" className="accordion">
               <Accordion.Header>[사이트 안내] 사이트 관련 안내</Accordion.Header>
               <Accordion.Body>
                 저희 CAMTEM은 캠핑장 추천 사이트로 예약 및 결제를 지원하지 않습니다.
@@ -412,7 +399,7 @@ function ProductDetail() {
                 예약이나 결제를 원하신다면 각 캠핑장의 사이트로 넘어가서 예약/결제 진행을 부탁드립니다.
               </Accordion.Body>
             </Accordion.Item>
-            <Accordion.Item eventKey="4">
+            <Accordion.Item eventKey="4" className="accordion">
               <Accordion.Header>[정보제공] 캠핑장 정보 제공 관련 안내</Accordion.Header>
               <Accordion.Body>
                 저희 캠핑장 추천 사이트 CAMTEM에서 제공하는 캠핑장 정보는 한국관광공사 고캠핑에서 제공하는 정보입니다.
