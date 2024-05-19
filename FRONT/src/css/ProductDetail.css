@@ -24,6 +24,11 @@
     height: 23.125rem;
 }
 
+.hr, .hr1{
+    width: 100%;
+    margin: 0 auto;
+}
+
 /* .CampIntro css */
 .CampIntro {
     margin-left: 5%;
@@ -224,6 +229,22 @@
     margin: 0 auto;
 }
 
+.backgroundContainer{
+    width: 80%;
+    margin: 1.25rem auto;
+    background-color: #f5f5f5;
+    border-radius: 0.625rem;
+    padding: 1.25rem 1.25rem 0.625rem 1.875rem;
+}
+
+.table{
+    padding: 0.625rem 1.25rem;
+}
+
+th{
+    width: 35%;
+}
+
 @media screen and (max-width: 767px) {
     .firstContainer {
         flex-direction: column;
@@ -244,6 +265,15 @@
     .CampIntro {
         margin: 0 auto;
         margin-top: 30px;
+    }
+
+    .camp-intro-title-container{
+        margin-top: 30px;
+    }
+
+    .camping-short-info{
+        height: 70vh;
+        text-align: center;
     }
 
     .camping-title,
@@ -285,8 +315,7 @@
     }
 
     .carousel {
-        display: flex;
-        justify-content: center;
+        display: none;
     }
 
     .short-info-payment-container {
@@ -301,6 +330,13 @@
 
     .camp-facility-container {
         margin-top: -50px;
+        height: 70vh;
+    }
+
+    .facility-wrapper{
+        background-color: white;
+        margin-top: -30px;
+        text-align: center;
     }
 
     .mapHeaderText {
@@ -320,5 +356,36 @@
         margin-left: -33.1px;
         width: 300px;
     }
+
+    .facility-title{
+        margin-top: 20px;
+    }
+
+    .backgroundContainer{
+        margin-top: -30px;
+        background-color: white;
+        width: 300px;
+    }
+
+    .table{
+        margin-left: -10px;
+        width: 300px;
+    }
+
+    .table td{
+        /* margin-right: 105px; */
+        padding-right: 15px;
+
+    }
+
+    th{
+        width: 70px;
+    }
+
+    .hr1{
+        display: none;
+    }
+
+    
     
 }

@@ -25,6 +25,7 @@ import { IoStorefrontOutline } from "react-icons/io5";
 import "../css/ProductDetail.css";
 import "../css/TopNav.css";
 import "../css/Footer.css";
+import defaultImage from "../images/image44.png";
 
 function ProductDetail() {
   // useParams : api에 요청한 url에 접근해서 100109 id를 가져올 수 있다.
@@ -85,10 +86,14 @@ function ProductDetail() {
     "산책로": <GiTrail />,
     "운동시설": <FaDumbbell />,
     "마트": <IoStorefrontOutline />,
-    // 다른 요소와 아이콘을 추가할 수 있음
   };
+
   // camping.sbrsCl의 요소들을 공백, 쉼표, 마침표를 기준으로 분리하여 배열로 만듦
   const facilities = camping.sbrsCl.split(/[ ,.]+/);
+
+  // iconMap에 있는 키 값만 필터링
+  const filteredFacilities = facilities.filter(facility => iconMap.hasOwnProperty(facility));
+
 
   return (
     <Container fluid style={{ fontFamily: 'SUITE-Regular' }} id="productdetail">
@@ -102,7 +107,7 @@ function ProductDetail() {
             {/* 높낮이도 정해야 함 */}
             {/* content firstImageUrl의 값이 있는지 확인 */}
             <img
-              src={camping.firstImageUrl}
+              src={camping.firstImageUrl ? camping.firstImageUrl : defaultImage}
               alt="캠핑장 사진입니다."
               className="camping-image"
             />
@@ -203,7 +208,7 @@ function ProductDetail() {
             </Carousel>
           </div>
           {/* h3 : 캠핑장 기본 정보 + 수평선 태그, hr은 inline 태그여서 div나 span 태그랑 감싸서 진행해야 한다.*/}
-          <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
+          <div className="hr1">
             <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
           </div>
           <div className="camp-intro-title-container">
@@ -217,7 +222,7 @@ function ProductDetail() {
             <div className="short-info-content">
               <br />
               <h6 className="camping-short-info">
-                {camping.intro}
+                {camping.intro ? camping.intro : "관련 캠핑장 소개가 없습니다."}
                 <br />
                 <br />
                 <br />
@@ -231,7 +236,7 @@ function ProductDetail() {
         </div>
 
         {/* 수평선 태그로 닫아주기 */}
-        <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
+        <div className="hr">
           <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
         </div>
 
@@ -243,8 +248,8 @@ function ProductDetail() {
         <br />
         <div className="camp-facility-container" id="clickUseInfo">
           <div className="facility-wrapper">
-            <div cla>
-              {facilities.map((facility, index) => (
+            <div>
+              {filteredFacilities.map((facility, index) => (
                 <div className="facility-icon-container" key={index}>
                   <div className="facility-content">
                     {iconMap[facility] && (
@@ -262,8 +267,9 @@ function ProductDetail() {
           </div>
         </div>
 
+
         {/* 수평선 */}
-        <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
+        <div className="hr">
           <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
         </div>
 
@@ -275,48 +281,49 @@ function ProductDetail() {
           </div>
           <br />
           <br />
-          <div style={{ width: "80%", margin: "1.25rem auto", backgroundColor: "#f5f5f5", borderRadius: "0.625rem", padding: "1.25rem 1.25rem 0.625rem 1.875rem" }}>
-            <table className="table" style={{ padding: "0.625rem 1.25rem" }}>
+          <div className="backgroundContainer">
+            <table className="table">
               <tr>
-                <th style={{ width: "35%" }}>주요시설</th>
-                <td>가격1</td>
+                <th>관리인원</th>
+                <td>{camping.manageNmpr}명</td>
                 <th>개인 트레일러 동반여부</th>
                 <td>{camping.trlerAcmpnyAt}</td>
               </tr>
               <tr>
-                <th>화장실 개수</th>
-                <td>{camping.toiletCo}</td>
+                <th>화장실</th>
+                <td>{camping.toiletCo}개</td>
                 <th>개인 카라반 동반여부</th>
                 <td>{camping.caravAcmpnyAt}</td>
               </tr>
               <tr>
-                <th>샤워실 개수</th>
-                <td>{camping.swrmCo}</td>
+                <th>샤워실</th>
+                <td>{camping.swrmCo}개</td>
                 <th>전체면적</th>
                 <td>{camping.allar}</td>
               </tr>
               <tr>
-                <th>개수대 개수</th>
-                <td>{camping.wtrplCo}</td>
+                <th>개수대</th>
+                <td>{camping.wtrplCo}개</td>
                 <th>입지구분</th>
                 <td>{camping.lctCl}</td>
               </tr>
               <tr>
-                <th>화로대 여부</th>
-                <td>{camping.brazierCl}</td>
-                <th>사이트간거리</th>
+                <th>화로대</th>
+                <td>{camping.brazierCl ? camping.brazierCl : "N"}</td>
+                <th>사이트간 거리</th>
                 <td>{camping.sitedStnc}</td>
               </tr>
               <tr>
-                <th>캠핑장비대여</th>
-                <td>{camping.eqpmnLendCl}</td>
+                {/* camping.firstImageUrl ? camping.firstImageUrl : defaultImage */}
+                <th>장비대여</th>
+                <td>{camping.eqpmnLendCl ? camping.eqpmnLendCl : "N"}</td>
                 <th>반려동물 동반여부</th>
-                <td>{camping.animalCmgCl}</td>
+                <td>{camping.animalCmgCl ? camping.animalCmgCl : "불가능"}</td>
               </tr>
             </table>
           </div>
 
-          <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
+          <div className="hr">
             <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
           </div>
 
@@ -331,11 +338,11 @@ function ProductDetail() {
             <KakaoMap className="kakaoMap" camping={camping} key={camping.contentId} />
             <br />
             <p>{camping.facltNm} 오시는길</p>
-            <p>{camping.direction}</p>
+            <p>{camping.direction ? camping.direction : "등록되지 않은 정보입니다."}</p>
           </div>
         </div>
 
-        <div className="hr" style={{ width: "100%", margin: "0 auto" }}>
+        <div className="hr">
           <hr style={{ width: "100%", border: "none", borderBottom: "1px solid black" }} />
         </div>
         {/* 공지사항 : 아코디언 */}
@@ -347,7 +354,7 @@ function ProductDetail() {
           </div>
           <br />
 
-          <Accordion  defaultActiveKey={["0"]} alwaysOpen style={{ width: "80%", margin: "0 auto" }}>
+          <Accordion defaultActiveKey={["0"]} alwaysOpen style={{ width: "80%", margin: "0 auto" }}>
             <Accordion.Item eventKey="0" style={{ backgroundColor: "#f2f2f2" }} className="accordion">
               <Accordion.Header>[조회방법] 여러 캠핑장을 검색하는 방법</Accordion.Header>
               <Accordion.Body>
