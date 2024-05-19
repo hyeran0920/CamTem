@@ -1,0 +1,56 @@
+.navbar__toggleBtn {
+    display: none;
+    position: absolute;
+    right: 32px;
+    top: 16px; /* 고정된 위치를 위해 top 속성 추가 */
+    font-size: 24px;
+    color: aliceblue;
+  }
+  
+  /* 스마트폰 세로 모드 */
+  @media screen and (max-width: 767px) {
+    
+    /* .bgImage {
+      background-image: none !important;
+      background-color: #263343;
+    } */
+  
+  
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 8px 24px;
+      position: relative; /* 자식 요소인 토글 버튼 위치 고정을 위해 필요 */
+    }
+  
+    .navbar__menu {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .navbar__toggleBtn {
+      display: block;
+    }
+  
+    .navbar__menu.active {
+      display: flex;
+    }
+  
+    .navbar__menu .nav-item {
+      width: 100%; /* 부모 요소에 width 적용 */
+    }
+  
+    .navbar__menu .nav-link {
+      width: 100%; /* 자식 요소에도 width 적용 */
+    }
+  
+    /* hover 스타일링 */
+    .navbar__menu .nav-link:hover {
+      color: black;
+      background-color: white;
+      border-radius: 4px;
+    }
+  }

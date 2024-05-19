@@ -1,0 +1,391 @@
+#productdetail {
+    margin: 0;
+    padding: 0;
+}
+
+#entire {
+    padding: 0 1.875rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.firstContainer {
+    display: flex;
+    align-items: center;
+}
+
+/* .Thumbnail.css */
+.Thumbnail {
+    margin: 1.5625rem 1.5625rem 0 0;
+}
+
+.camping-image {
+    width: 38.125rem;
+    height: 23.125rem;
+}
+
+.hr, .hr1{
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* .CampIntro css */
+.CampIntro {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.camping-title {
+    font-weight: bold;
+}
+
+.camping-address {
+    margin-top: 1.875rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 0.625rem;
+}
+
+.camp-button,
+.no-info-button {
+    display: flex;
+    align-items: center;
+    padding: 0.3125rem 0.625rem;
+    border: none;
+}
+
+.camp-button {
+    background-color: #008b8b;
+    color: white;
+}
+
+.no-info-button {
+    background-color: #d3d3d3;
+    color: black;
+}
+
+.button-link {
+    color: white;
+    text-decoration: none;
+}
+
+/* navBar */
+.navBar {
+    background: gray;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.nav-link {
+    color: white;
+    border-radius: 0;
+}
+
+/* .sliderContainer css */
+.slider-container {
+    text-align: center;
+    width: 100%;
+    height: 34.375rem;
+    margin-bottom: 1.875rem;
+    padding: 0;
+}
+
+/* .carousel {
+    얘는 고민 중
+  } */
+
+.carousel-item img {
+    width: 34.375rem;
+    margin: 1.5625rem;
+    height: 31.25rem;
+}
+
+/* CampIntroTitle.css */
+
+.camp-intro-title-container {
+    display: flex;
+    align-items: center;
+}
+
+.camp-intro-title-icon {
+    margin-right: 0.3125rem;
+}
+
+.camp-intro-title-text {
+    margin: 0;
+}
+
+/* ShortInfoPayment.css */
+
+.short-info-payment-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 0;
+    width: 90%;
+}
+
+.short-info-content {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.camping-short-info {
+    width: 100%;
+    white-space: pre-wrap;
+    text-align: initial;
+    font-size: 1.125rem;
+}
+
+/* CampMainFacilityHeader.css */
+
+.camp-main-facility-header {
+    display: flex;
+    align-items: center;
+}
+
+.facility-header-icon {
+    margin-right: 0.3125rem;
+}
+
+.facility-header-text {
+    margin: 0;
+}
+
+/* CampFacilityContainer.css */
+
+.camp-facility-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 18.75rem;
+}
+
+.facility-wrapper {
+    background-color: #f5f5f5;
+    width: 80%;
+    height: 50%;
+    margin: 0 auto;
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    text-align: center;
+}
+
+.facility-icon-container {
+    display: inline-block;
+    margin-right: 1.875rem;
+    vertical-align: top;
+}
+
+.facility-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.facility-icon {
+    margin-bottom: 0.625rem;
+    font-size: 1.25rem;
+}
+
+.facility-text {
+    font-size: 0.9375rem;
+}
+
+/* CampOtherFacility.css */
+
+.other-facility-container {
+    display: flex;
+    align-items: center;
+}
+
+.facility-title {
+    margin: 0;
+    margin-right: 0.3125rem;
+}
+
+.mapContainer {
+    text-align: center;
+}
+
+.mapHeader {
+    display: flex;
+    align-items: center;
+}
+
+.mapHeaderIcon {
+    margin-right: 0.3125rem;
+}
+
+.mapHeaderText {
+    margin: 0;
+}
+
+.kakaoMap {
+    margin: 0 auto;
+}
+
+.backgroundContainer{
+    width: 80%;
+    margin: 1.25rem auto;
+    background-color: #f5f5f5;
+    border-radius: 0.625rem;
+    padding: 1.25rem 1.25rem 0.625rem 1.875rem;
+}
+
+.table{
+    padding: 0.625rem 1.25rem;
+}
+
+th{
+    width: 35%;
+}
+
+@media screen and (max-width: 767px) {
+    .firstContainer {
+        flex-direction: column;
+        align-items: center;
+        /* 이 부분을 변경했습니다. */
+    }
+
+    .Thumbnail {
+        text-align: center;
+        margin-bottom: 1rem;
+        /* 약간의 마진을 추가했습니다. */
+    }
+
+    .camping-image {
+        margin-top: 10px;
+    }
+
+    .CampIntro {
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+
+    .camp-intro-title-container{
+        margin-top: 30px;
+    }
+
+    .camping-short-info{
+        height: 70vh;
+        text-align: center;
+    }
+
+    .camping-title,
+    .camping-address {
+        text-align: center;
+    }
+
+    h6 {
+        text-align: center;
+    }
+
+    .button-container {
+        margin-top: -15px;
+        justify-content: center;
+        /* 이 부분을 추가했습니다. */
+    }
+
+    .camp-button {
+        margin: 0 auto;
+    }
+
+    .navBar {
+        display: flex;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+        width: 390px;
+        /* height: 47px; */
+        margin-left: -50px;
+    }
+
+    .nav-link {
+        flex: 1;
+        text-align: center;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carousel {
+        display: none;
+    }
+
+    .short-info-payment-container {
+        margin: 0 auto;
+        margin-left: -25px;
+        width: 350px;
+    }
+
+    .facility-header-text {
+        margin-top: 12px;
+    }
+
+    .camp-facility-container {
+        margin-top: -50px;
+        height: 70vh;
+    }
+
+    .facility-wrapper{
+        background-color: white;
+        margin-top: -30px;
+        text-align: center;
+    }
+
+    .mapHeaderText {
+        margin-top: 10px;
+    }
+
+    .mapContainer {
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .FAQ{
+        margin-top: 30px;
+    }
+
+    .accordion{
+        margin-left: -33.1px;
+        width: 300px;
+    }
+
+    .facility-title{
+        margin-top: 20px;
+    }
+
+    .backgroundContainer{
+        margin-top: -30px;
+        background-color: white;
+        width: 300px;
+    }
+
+    .table{
+        margin-left: -10px;
+        width: 300px;
+    }
+
+    .table td{
+        /* margin-right: 105px; */
+        padding-right: 15px;
+
+    }
+
+    th{
+        width: 70px;
+    }
+
+    .hr1{
+        display: none;
+    }
+
+    
+    
+}

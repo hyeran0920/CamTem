@@ -1,0 +1,27 @@
+/* CenterContent css 부분 */
+.bgContainer {
+    width: 70%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+.subTitle {
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 767px) {
+
+    /* CenterContent css 부분 */
+    .bgContainer {
+        width: 90%;
+        /* 모바일 화면에서는 너비 90%로 조정 */
+    }
+
+    /* .subTitle{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 24px;
+    } */
+}
