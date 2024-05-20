@@ -39,6 +39,7 @@ public class CampService {
         return campDtoList;
     }
 
+    //엔티티를 dto로 변환하는 메소드
     private NewCamp entityToDto(Camping camping){
         NewCamp campDto = new NewCamp();
         campDto.setContentId(camping.getContentId());

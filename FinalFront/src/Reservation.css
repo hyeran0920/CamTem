@@ -1,0 +1,36 @@
+.datepicker {
+    width: 120%; /* 너비를 100%로 설정하여 부모 요소에 맞게 확장합니다 */
+    padding: 5px 20px;
+    margin-left: 15px ;
+    border: 1px solid #DFE2E5; /* 테두리 스타일 */
+    border-radius: 5px; /* 모서리 반경 */
+    color: #666; /* 텍스트 색상 */
+    text-align: left; /* 텍스트를 왼쪽으로 정렬 */
+    display: block; /* 블록 요소로 설정 */
+}
+.react-datepicker-wrapper{
+    width: 80%;
+}
+
+#people {
+    padding: 5px 10px;
+    border: 1px solid #DFE2E5; /* 테두리 스타일 */
+    border-radius: 5px; /* 모서리 반경 */
+    margin-left:10px ;
+    color: #666; /* 텍스트 색상 */
+    text-align: left; /* 텍스트를 왼쪽으로 정렬 */
+    background-color: #fff;
+    width: 100%;
+}
+/* Reservation.css */
+#placesearch {
+    padding: 5px 10px;
+    margin-left:5px ;
+    width: 90%;
+    border: none;
+    border-radius: 5px; /* 모서리 반경 */
+    color: #fff; /* 텍스트 색상 */
+    background-color: darkcyan;
+    text-align: center; /* 텍스트를 왼쪽으로 정렬 */
+    font-weight: bold;
+}

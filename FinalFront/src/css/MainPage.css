@@ -1,0 +1,64 @@
+/* 1번째 컨테이너 */
+.where {
+  color: white;
+  font-size: 3rem;
+  padding-top: 30px;
+}
+
+.recommendTitle {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 80px 0 30px 0;
+  text-align: left;
+  padding: 0 150px;
+}
+
+/* 3번째 컨테이너 */
+#date-section {
+  width: 100%;
+}
+
+#date-section h1 {
+  font-weight: bold;
+}
+
+.secondContent {
+  display: flex;
+  justify-content: center;
+}
+
+.leftContainer {
+  width: 50%;
+  padding-right: 10px;
+  padding-top: 90px;
+}
+
+.rightContainer {
+  width: 35%;
+  margin-left: 100px;
+}
+
+@media screen and (max-width: 767px) {
+  .where {
+    font-size: 2rem;
+  }
+
+  .recommendTitle {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  /* 화면이 작을 때도 순서를 유지하고 너비만 조정 */
+  .secondContent {
+    flex-direction: column; /* 순서를 유지하면서 세로 정렬 */
+  }
+
+  .leftContainer, 
+  .rightContainer {
+    width: 100%; /* 두 컨테이너 모두 전체 너비로 설정 */
+    padding: 0;
+    margin-top: 20px; /* 필요에 따라 margin-top을 조정 */
+    margin-left: 0;
+  }
+}

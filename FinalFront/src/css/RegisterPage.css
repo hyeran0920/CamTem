@@ -1,0 +1,112 @@
+.register-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    margin-top: 3%;
+  }
+  
+  .register-title {
+    text-align: center;
+  }
+  
+  .registerForm {
+    margin-bottom: 15px;
+  }
+  
+  .registerInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn-register {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .btn-register:hover {
+    background-color: #0056b3;
+  }
+
+  .line-with-text {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .line-with-text::before,
+  .line-with-text::after {
+    content: "";
+    display: inline-block;
+    width: 50px; /* 선의 길이 */
+    height: 1px; /* 선의 두께 */
+    background-color: black; /* 선의 색상 */
+    vertical-align: middle;
+  }
+  
+  .line-with-text::before {
+    margin-right: 10px; /* 선과 텍스트 사이의 간격 */
+  }
+  
+  .line-with-text::after {
+    margin-left: 10px; /* 선과 텍스트 사이의 간격 */
+  }
+  
+
+  .snsRegisterButton {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+  }
+  
+  .RegisterNaverButton{
+    background-image: url(../images/btnG_아이콘원형.png);
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .RegisterKakaoButton{
+    background-image: url(../images/kakao-talk.png);
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .RegisterGoogleButton{
+    background-image: url(../images/web_light_rd_na@2x.png);
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border: 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  

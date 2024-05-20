@@ -1,4 +1,3 @@
-//JSON과 XML 형식의 데이터 간 변환을 수행하는데 사용
 package com.camtem.camtemback.components;
 
 import com.fasterxml.jackson.core.JsonProcessingException;

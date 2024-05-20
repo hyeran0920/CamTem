@@ -1,5 +1,6 @@
 package com.camtem.camtemback.components;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Setter
 public class Camp {
     private Response response;
+
 
     @Getter
     @Setter
@@ -52,6 +54,7 @@ public class Camp {
         private String addr1; // 주소
         private String lineIntro; // 한줄소개
         private String induty; // 야영장 분류
+
     }
 
 }

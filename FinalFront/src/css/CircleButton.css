@@ -1,0 +1,46 @@
+.circle-button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+    flex-wrap: wrap; /* 버튼들을 여러 줄로 배치하기 위해 flex-wrap 추가 */
+}
+
+.circle-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #ef9f11;
+    background-color: rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    font-weight: bold;
+    margin: 10px; /* 버튼 간격 추가 */
+}
+
+/* 모바일 화면 스타일 */
+@media screen and (max-width: 767px) {
+    .circle-button-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center; /* 버튼들을 가운데 정렬 */
+        gap: 5px; /* 버튼 간격 */
+    }
+
+    .circle-button {
+        width: 80px; /* 모바일 화면에서는 버튼 크기 조정 */
+        height: 80px;
+        font-size: 16px; /* 모바일 화면에서는 글자 크기 조정 */
+    }
+
+    .circle-button:hover{
+        background-color: #ef9f11;
+    }
+}
