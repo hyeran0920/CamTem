@@ -15,7 +15,7 @@
 **이용자가 캠핑을 계획할 때 날씨와 장소 정보를 함께 고려해서 여행 계획을 수립할 수 있도록 돕는 데에 있습니다.**
 
 ## 📋 프로젝트 문서
-<img src="https://img.shields.io/badge/googledrive-%234285F4?logo=googledrive&logoColor=%23fccf03" />
+
 
 ## 🖥 사용한 기술 스택
 ### Front-End
@@ -26,7 +26,7 @@
 <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
 <img src="https://img.shields.io/badge/axios-5A29E4?style=flat-square&logo=axios&logoColor=white"/>
-
+<img src="https://img.shields.io/badge/redux-764ABC?style=flat-square&logo=redux&logoColor=white"/>
 
 ### Back-End
 <img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/>
