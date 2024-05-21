@@ -23,7 +23,11 @@
 	<img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white" />
 	<img src="https://img.shields.io/badge/javascript-%23F7DF1E?logo=javascript&logoColor=%230d0c0c" />
 	<img src="https://img.shields.io/badge/bootstrap-%237952B3?logo=bootstrap&logoColor=%23ffffff" />
+
+ 
 ### Back-End
+<img src="https://img.shields.io/badge/JDK17.0-%23000000?logo=openjdk" />
+<img src="https://img.shields.io/badge/mysql-%234479A1?logo=mysql&logoColor=%23fffdf7" />
 
 ## 🖥 Primary Function
 
