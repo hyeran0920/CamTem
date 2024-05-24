@@ -31,7 +31,7 @@
 |**서유진**|**변의성**|**박지연**|**송진원**|**유지연**| 
 |:---:|:---:|:---:|:---:|:---:|
 |**조장**|**기술팀장**|**조원**|**조원**|**조원**|
-|[🔗]바로가기(https://github.com/hyeran0920)|[🔗](https://github.com/uhhhmmman)|[🔗](https://github.com/yeonjp)|[🔗](https://github.com/jinwonsong)|[🔗](https://github.com/JiyeonU)|
+|[🔗][바로가기](https://github.com/hyeran0920)|[🔗](https://github.com/uhhhmmman)|[🔗](https://github.com/yeonjp)|[🔗](https://github.com/jinwonsong)|[🔗](https://github.com/JiyeonU)|
 
 ### 👨‍👩‍👧‍👦 Team Culture
 - 프로젝트 기간 내 오전 11시 ~ 오후 1시 / 오후 2시 ~ 오후 6시까지 항시 접속 및 응답
