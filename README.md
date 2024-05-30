@@ -13,7 +13,7 @@
 ### Figma [[바로가기]](https://www.figma.com/design/qmyoSrg2ofQVP0w38MHFow/Figma-Website-Template---Landing-Page-(Free)-(Community)?node-id=0-88&t=Y1tvTZXDmLaBC0sx-0)
 ### ERD 문서 [[바로가기]](https://www.erdcloud.com/d/DcPWPFZsbYPKSH32T)
 ### Flow Chart 문서 [[바로가기]](https://drive.google.com/file/d/12UhbCWpha8bSc_JCTSQO4jzVTy1vviXT/view?usp=sharing)
-### PPT 문서 [[바로가기]](https://drive.google.com/file/d/12UhbCWpha8bSc_JCTSQO4jzVTy1vviXT/view?usp=sharing](https://www.canva.com/design/DAGFuLJojIc/uhV_paz6O5xeYAhjovQMOw/view?utm_content=DAGFuLJojIc&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel)
+### PPT 문서 [[바로가기]](https://www.canva.com/design/DAGFuLJojIc/uhV_paz6O5xeYAhjovQMOw/view?utm_content=DAGFuLJojIc&utm_campaign=share_your_design&utm_medium=link&utm_source=shareyourdesignpanel)
 
 ## 🖥 사용한 기술 스택
 ### Front-End
