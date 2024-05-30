@@ -26,7 +26,8 @@
 ## Deploy
 <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/> <img src="https://img.shields.io/badge/amazonec2-FF9900?style=flat-square&logo=amazonec2&logoColor=white"/> <img src="https://img.shields.io/badge/amazons3-569A31?style=flat-square&logo=amazons3&logoColor=white"/>
 
-## 🖥 Primary Function
+## 🖥 CAMTEM 프로그램 영상
+[[CAMTEM]](https://youtu.be/nqh6eN07uvE?si=HU2zsakN3DIAGuFG)
 
 ## 🌐 System Architecture
 ![image](https://github.com/hyeran0920/CamTem/assets/50619898/1757f10a-b600-45c4-bf46-89b8bb4577d8)
